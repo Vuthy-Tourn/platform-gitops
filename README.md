@@ -23,12 +23,15 @@ This GitOps repo should keep only deployment state:
 ## Expected structure
 
 ```text
+applications/
+  <workspace-id>/
+    <user-id>/
+      <project-name>.yaml
 apps/
   <workspace-id>/
     <user-id>/
       namespace.yaml
       <project-name>/
-        application.yaml
         kustomization.yaml
         values.yaml
 templates/
@@ -42,14 +45,15 @@ templates/
 Example:
 
 ```text
+applications/demo-workspace/demo-user/
+  api-gateway.yaml
+  order-service.yaml
 apps/demo-workspace/demo-user/
   namespace.yaml
   api-gateway/
-    application.yaml
     kustomization.yaml
     values.yaml
   order-service/
-    application.yaml
     kustomization.yaml
     values.yaml
 templates/charts/
@@ -65,12 +69,9 @@ If you want Argo CD to create tenant applications automatically after Jenkins wr
 
 - [root-app-of-apps.yaml](/Users/macbookpro/Desktop/ISTAD/gitops-repo/bootstrap/argocd/root-app-of-apps.yaml)
 
-That root application watches the `apps/` folder recursively. When the deploy pipeline writes:
+That root application watches the `applications/` folder recursively. When the deploy pipeline writes:
 
-- `namespace.yaml`
-- `application.yaml`
-- `kustomization.yaml`
-- `values.yaml`
+- `applications/.../<service>.yaml`
 
 Argo CD will discover the new child `Application` manifest and create it automatically on the next sync.
 
@@ -85,7 +86,7 @@ The Jenkins pipeline from the infra repo writes files here through:
 That script now:
 
 - creates `namespace.yaml`
-- creates `application.yaml`
+- creates `applications/.../<service>.yaml`
 - creates `kustomization.yaml`
 - creates `values.yaml`
 - expects a shared reusable chart at `templates/charts/app-template`

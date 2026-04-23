@@ -13,10 +13,10 @@ spec:
   source:
     repoURL: https://github.com/Vuthy-Tourn/platform-gitops
     targetRevision: main
-    path: apps
+    path: applications
     directory:
       recurse: true
-      include: '**/application.yaml'
+      include: '**/*.yaml'
   syncPolicy:
     automated:
       prune: true
