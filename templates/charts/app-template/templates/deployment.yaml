@@ -24,7 +24,7 @@ spec:
       {{- $envJson := trim (default "" .Values.envJson) }}
       {{- $envVars := .Values.env | default (list) }}
       {{- if $envJson }}
-      {{- $envVars = fromJson $envJson }}
+      {{- $envVars = fromJsonArray $envJson }}
       {{- end }}
       {{- if .Values.imagePullSecrets }}
       imagePullSecrets:
