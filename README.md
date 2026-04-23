@@ -16,8 +16,9 @@ That infra repo keeps:
 This GitOps repo should keep only deployment state:
 
 - generated Argo CD applications
-- generated Helm values
+- generated Helm values / Kustomize wrappers
 - tenant namespace manifests
+- shared reusable chart templates used by service-level Kustomize apps
 
 ## Expected structure
 
@@ -28,7 +29,14 @@ apps/
       namespace.yaml
       <project-name>/
         application.yaml
+        kustomization.yaml
         values.yaml
+templates/
+  charts/
+    app-template/
+      Chart.yaml
+      values.yaml
+      templates/
 ```
 
 Example:
@@ -38,10 +46,17 @@ apps/demo-workspace/demo-user/
   namespace.yaml
   api-gateway/
     application.yaml
+    kustomization.yaml
     values.yaml
   order-service/
     application.yaml
+    kustomization.yaml
     values.yaml
+templates/charts/
+  app-template/
+    Chart.yaml
+    values.yaml
+    templates/
 ```
 
 ## Automatic application creation
@@ -54,6 +69,7 @@ That root application watches the `apps/` folder recursively. When the deploy pi
 
 - `namespace.yaml`
 - `application.yaml`
+- `kustomization.yaml`
 - `values.yaml`
 
 Argo CD will discover the new child `Application` manifest and create it automatically on the next sync.
@@ -70,15 +86,15 @@ That script now:
 
 - creates `namespace.yaml`
 - creates `application.yaml`
+- creates `kustomization.yaml`
 - creates `values.yaml`
-- references the Helm chart from the infra repo instead of copying the chart here
+- expects a shared reusable chart at `templates/charts/app-template`
 
 ## What should not live here
 
 Avoid putting these here:
 
 - Jenkinsfiles
-- shared Helm chart source
 - framework Dockerfile templates
 - build scripts
 

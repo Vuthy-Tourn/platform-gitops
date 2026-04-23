@@ -1,18 +1,18 @@
 app:
-  name: "api-gateway"
+  name: "config-server"
   userId: "sample-user"
-  projectName: "api-gateway"
+  projectName: "config-server"
   namespace: "user-sample-user"
   framework: "springboot-gradle"
-  serviceType: "gateway"
-  containerPort: 8080
+  serviceType: "internal"
+  containerPort: 8888
   servicePort: 80
   domain: "apps.example.com"
-  host: "api-gateway-sample.apps.example.com"
+  host: "config-server-sample-workspace.apps.example.com" # managed-by-jenkins-host
 
 image:
-  repository: "registry.example.com/platform/sample-user/api-gateway"
-  tag: "sample-user-1-abcdef123456"
+  repository: "docker.io/vuthytourn/config-server"
+  tag: "sample-user-1-cb2f7c1e0196" # managed-by-jenkins-image-tag
   pullPolicy: "IfNotPresent"
 
 replicaCount: 1
@@ -32,27 +32,19 @@ autoscaling:
   targetCPUUtilizationPercentage: 70
 
 ingress:
-  enabled: true
+  enabled: false
   className: "nginx"
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
   tls:
     enabled: true
-    secretName: "api-gateway-tls"
+    secretName: "config-server-tls"
 
 imagePullSecrets:
   - name: "registry-secret"
 
-serviceAccount:
-  create: true
-  name: ""
-  annotations: {}
-
 envJson: |
-  [
-    { "name": "SPRING_PROFILES_ACTIVE", "value": "prod" },
-    { "name": "ORDER_SERVICE_URL", "value": "http://order-service.user-sample-user.svc.cluster.local" }
-  ]
+  []
 
 probes:
   mode: "tcp"
@@ -73,8 +65,3 @@ probes:
     initialDelaySeconds: 30
     periodSeconds: 15
     failureThreshold: 3
-
-env: []
-nodeSelector: {}
-tolerations: []
-affinity: {}
