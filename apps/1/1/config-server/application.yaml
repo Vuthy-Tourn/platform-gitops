@@ -13,17 +13,11 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: "user-1"
-  sources:
-    - repoURL: "https://github.com/Vuthy-Tourn/platform-infra-testing"
-      targetRevision: "main"
-      path: "helm/app-template"
-      helm:
-        releaseName: "config-server"
-        valueFiles:
-          - $values/apps/1/1/config-server/values.yaml
-    - repoURL: "git@github.com:Vuthy-Tourn/platform-gitops.git"
-      targetRevision: "main"
-      ref: values
+  source:
+    repoURL: "https://github.com/Vuthy-Tourn/platform-gitops"
+    targetRevision: "main"
+    path: "apps/1/1/config-server"
+    kustomize: {}
   syncPolicy:
     automated:
       prune: true
@@ -31,3 +25,10 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - ServerSideApply=true
+  info:
+    - name: templateRepo
+      value: "https://github.com/Vuthy-Tourn/platform-infra-testing"
+    - name: templateRevision
+      value: "main"
+    - name: templatePath
+      value: "helm/app-template"

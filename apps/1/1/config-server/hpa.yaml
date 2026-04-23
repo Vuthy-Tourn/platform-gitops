@@ -1,0 +1,26 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: config-server
+  namespace: user-1
+  labels:
+    app.kubernetes.io/name: config-server
+    app.kubernetes.io/managed-by: kustomize
+    platform.devops/user-id: "1"
+    platform.devops/project-name: "config-server"
+    platform.devops/framework: "springboot-gradle"
+    platform.devops/service-type: "internal"
+spec:
+  minReplicas: 1
+  maxReplicas: 4
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: config-server
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70

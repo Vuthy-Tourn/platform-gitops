@@ -1,0 +1,25 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: user-1
+resources:
+  - serviceaccount.yaml
+  - deployment.yaml
+  - service.yaml
+  - hpa.yaml
+generatorOptions:
+  disableNameSuffixHash: true
+commonLabels:
+  app.kubernetes.io/name: config-server
+  app.kubernetes.io/managed-by: kustomize
+  platform.devops/user-id: "1"
+  platform.devops/project-name: "config-server"
+  platform.devops/framework: "springboot-gradle"
+  platform.devops/service-type: "internal"
+configMapGenerator:
+  - name: config-server-env
+    envs:
+      - env.properties
+images:
+  - name: config-server-image
+    newName: docker.io/vuthytourn/config-server
+    newTag: 1-20-cb2f7c1e0196

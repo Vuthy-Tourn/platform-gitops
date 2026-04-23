@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway
+  namespace: user-1
+  labels:
+    app.kubernetes.io/name: api-gateway
+    app.kubernetes.io/managed-by: kustomize
+    platform.devops/user-id: "1"
+    platform.devops/project-name: "api-gateway"
+    platform.devops/framework: "springboot-gradle"
+    platform.devops/service-type: "gateway"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: api-gateway
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: api-gateway
+        platform.devops/user-id: "1"
+        platform.devops/project-name: "api-gateway"
+    spec:
+      serviceAccountName: api-gateway
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+        - name: api-gateway
+          image: api-gateway-image:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: api-gateway-env
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          startupProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 0
+            periodSeconds: 5
+            failureThreshold: 24
+          readinessProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 3
+          livenessProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 15
+            failureThreshold: 3

@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api-gateway
+  namespace: user-1
+  labels:
+    app.kubernetes.io/name: api-gateway
+    app.kubernetes.io/managed-by: kustomize
+    platform.devops/user-id: "1"
+    platform.devops/project-name: "api-gateway"
+    platform.devops/framework: "springboot-gradle"
+    platform.devops/service-type: "gateway"
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - api-gateway-1.apps.example.com
+      secretName: api-gateway-tls
+  rules:
+    - host: api-gateway-1.apps.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: api-gateway
+                port:
+                  number: 80

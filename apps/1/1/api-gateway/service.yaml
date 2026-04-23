@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-gateway
+  namespace: user-1
+  labels:
+    app.kubernetes.io/name: api-gateway
+    app.kubernetes.io/managed-by: kustomize
+    platform.devops/user-id: "1"
+    platform.devops/project-name: "api-gateway"
+    platform.devops/framework: "springboot-gradle"
+    platform.devops/service-type: "gateway"
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: api-gateway
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080

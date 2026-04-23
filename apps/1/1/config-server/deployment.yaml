@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-server
+  namespace: user-1
+  labels:
+    app.kubernetes.io/name: config-server
+    app.kubernetes.io/managed-by: kustomize
+    platform.devops/user-id: "1"
+    platform.devops/project-name: "config-server"
+    platform.devops/framework: "springboot-gradle"
+    platform.devops/service-type: "internal"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: config-server
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: config-server
+        platform.devops/user-id: "1"
+        platform.devops/project-name: "config-server"
+    spec:
+      serviceAccountName: config-server
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+        - name: config-server
+          image: config-server-image:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8888
+          envFrom:
+            - configMapRef:
+                name: config-server-env
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          startupProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 0
+            periodSeconds: 5
+            failureThreshold: 24
+          readinessProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 3
+          livenessProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 15
+            failureThreshold: 3
