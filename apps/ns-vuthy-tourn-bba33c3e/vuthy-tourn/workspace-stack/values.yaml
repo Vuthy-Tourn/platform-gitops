@@ -2,7 +2,7 @@ workspace:
   id: "ns-vuthy-tourn-bba33c3e"
   userId: "vuthy-tourn"
   namespace: "ns-vuthy-tourn-bba33c3e"
-  domain: "apps.example.com"
+  domain: "autonomous-istad.com"
 
 imagePullSecrets:
   - name: "registry-secret"
@@ -35,10 +35,10 @@ services:
     replicaCount: 1
     containerPort: 8761
     servicePort: 8761
-    host: "eureka-server-ns-vuthy-tourn-bba33c3e.apps.example.com"
+    host: "eureka-server-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
-      repository: "docker.io/vuthytourn/eureka-server"
-      tag: "vuthy-tourn-31-2c1f958a72a7"
+      repository: "harbor.devith.it.com/microservices-deployment/vuthy-tourn/eureka-server"
+      tag: "vuthy-tourn-35-2c1f958a72a7"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -92,10 +92,10 @@ services:
     replicaCount: 1
     containerPort: 8089
     servicePort: 8089
-    host: "config-server-ns-vuthy-tourn-bba33c3e.apps.example.com"
+    host: "config-server-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
-      repository: "docker.io/vuthytourn/config-server"
-      tag: "vuthy-tourn-31-cb2f7c1e0196"
+      repository: "harbor.devith.it.com/microservices-deployment/vuthy-tourn/config-server"
+      tag: "vuthy-tourn-35-cb2f7c1e0196"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -149,10 +149,10 @@ services:
     replicaCount: 1
     containerPort: 9099
     servicePort: 9099
-    host: "api-gateway-ns-vuthy-tourn-bba33c3e.apps.example.com"
+    host: "api-gateway-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
-      repository: "docker.io/vuthytourn/api-gateway"
-      tag: "vuthy-tourn-31-3f7ceb190661"
+      repository: "harbor.devith.it.com/microservices-deployment/vuthy-tourn/api-gateway"
+      tag: "vuthy-tourn-35-3f7ceb190661"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
