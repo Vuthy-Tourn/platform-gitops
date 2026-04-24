@@ -28,17 +28,17 @@ defaults:
   affinity: {}
 
 services:
-  - name: "config-server"
+  - name: "eureka-server"
     framework: "springboot-gradle"
-    serviceType: "internal"
+    serviceType: "registry"
     syncWave: 0
     replicaCount: 1
-    containerPort: 8888
-    servicePort: 8888
-    host: "config-server-ns-vuthy-tourn-bba33c3e.apps.example.com"
+    containerPort: 8761
+    servicePort: 8761
+    host: "eureka-server-ns-vuthy-tourn-bba33c3e.apps.example.com"
     image:
-      repository: "docker.io/vuthytourn/config-server"
-      tag: "vuthy-tourn-30-cb2f7c1e0196"
+      repository: "docker.io/vuthytourn/eureka-server"
+      tag: "vuthy-tourn-31-2c1f958a72a7"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -85,17 +85,74 @@ services:
       annotations: {}
     env: []
     envJson: "[]"
+  - name: "config-server"
+    framework: "springboot-gradle"
+    serviceType: "internal"
+    syncWave: 1
+    replicaCount: 1
+    containerPort: 8089
+    servicePort: 8089
+    host: "config-server-ns-vuthy-tourn-bba33c3e.apps.example.com"
+    image:
+      repository: "docker.io/vuthytourn/config-server"
+      tag: "vuthy-tourn-31-cb2f7c1e0196"
+      pullPolicy: "IfNotPresent"
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "128Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+    probes:
+      mode: "tcp"
+      startup:
+        enabled: true
+        initialDelaySeconds: 0
+        periodSeconds: 5
+        failureThreshold: 24
+      readiness:
+        enabled: true
+        path: "/"
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        failureThreshold: 3
+      liveness:
+        enabled: true
+        path: "/"
+        initialDelaySeconds: 30
+        periodSeconds: 15
+        failureThreshold: 3
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 4
+      targetCPUUtilizationPercentage: 70
+    ingress:
+      enabled: false
+      className: "nginx"
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      tls:
+        enabled: true
+        secretName: ""
+    serviceAccount:
+      create: true
+      name: ""
+      annotations: {}
+    env: []
+    envJson: "[{\"name\":\"EUREKA_URL\",\"value\":\"http://eureka-server.ns-vuthy-tourn-bba33c3e.svc.cluster.local:8761/eureka/\"}]"
   - name: "api-gateway"
     framework: "springboot-gradle"
     serviceType: "gateway"
-    syncWave: 1
+    syncWave: 2
     replicaCount: 1
-    containerPort: 8080
-    servicePort: 8080
+    containerPort: 9099
+    servicePort: 9099
     host: "api-gateway-ns-vuthy-tourn-bba33c3e.apps.example.com"
     image:
       repository: "docker.io/vuthytourn/api-gateway"
-      tag: "vuthy-tourn-30-3f7ceb190661"
+      tag: "vuthy-tourn-31-3f7ceb190661"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -141,4 +198,4 @@ services:
       name: ""
       annotations: {}
     env: []
-    envJson: "[{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://config-server.user-test.svc.cluster.local:8888\"}]"
+    envJson: "[{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://config-server.ns-vuthy-tourn-bba33c3e.svc.cluster.local:8089/\"},{\"name\":\"EUREKA_URL\",\"value\":\"http://eureka-server.ns-vuthy-tourn-bba33c3e.svc.cluster.local:8761/eureka/\"}]"
