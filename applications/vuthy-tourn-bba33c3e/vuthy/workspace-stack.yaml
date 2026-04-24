@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: "workspace-stack-vuthy"
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+  labels:
+    app.kubernetes.io/managed-by: argocd
+    platform.devops/project-name: "workspace-stack"
+spec:
+  project: "default"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: "user-vuthy"
+  source:
+    repoURL: "https://github.com/Vuthy-Tourn/platform-gitops"
+    targetRevision: "main"
+    path: "apps/vuthy-tourn-bba33c3e/vuthy/workspace-stack"
+    kustomize: {}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+  info:
+    - name: templateRepo
+      value: "https://github.com/Vuthy-Tourn/platform-infra-testing"
+    - name: templateRevision
+      value: "main"
+    - name: templatePath
+      value: "helm/app-template"
