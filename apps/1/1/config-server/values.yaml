@@ -5,7 +5,7 @@ app:
   namespace: "user-1"
   framework: "springboot-gradle"
   serviceType: "internal"
-  containerPort: 8888
+  containerPort: 8089
   servicePort: 80
   domain: "apps.example.com"
   host: "config-server-1.apps.example.com" # managed-by-jenkins-host

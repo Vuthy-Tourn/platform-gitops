@@ -5,7 +5,7 @@ app:
   namespace: "user-1"
   framework: "springboot-gradle"
   serviceType: "gateway"
-  containerPort: 8080
+  containerPort: 9099
   servicePort: 80
   domain: "apps.example.com"
   host: "api-gateway-1.apps.example.com" # managed-by-jenkins-host
@@ -44,7 +44,7 @@ imagePullSecrets:
   - name: "registry-secret"
 
 envJson: |
-  [{"name":"CONFIG_SERVER_URL","value":"http://config-server.user-test.svc.cluster.local:8888"}]
+  [{"name":"CONFIG_SERVER_URL","value":"http://config-server.user-1.svc.cluster.local:8888"}]
 
 probes:
   mode: "tcp"
