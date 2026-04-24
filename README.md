@@ -16,9 +16,9 @@ That infra repo keeps:
 This GitOps repo should keep only deployment state:
 
 - generated Argo CD applications
-- generated Helm values / Kustomize wrappers
-- tenant namespace manifests
-- shared reusable chart templates used by service-level Kustomize apps
+- generated umbrella Helm values / Kustomize wrappers
+- workspace namespace manifests
+- shared reusable chart templates used by workspace-level Kustomize apps
 
 ## Expected structure
 
@@ -26,12 +26,12 @@ This GitOps repo should keep only deployment state:
 applications/
   <workspace-id>/
     <user-id>/
-      <project-name>.yaml
+      <stack-name>.yaml
 apps/
   <workspace-id>/
     <user-id>/
-      namespace.yaml
-      <project-name>/
+      <stack-name>/
+        namespace.yaml
         kustomization.yaml
         values.yaml
 templates/
@@ -46,14 +46,10 @@ Example:
 
 ```text
 applications/demo-workspace/demo-user/
-  api-gateway.yaml
-  order-service.yaml
+  workspace-stack.yaml
 apps/demo-workspace/demo-user/
-  namespace.yaml
-  api-gateway/
-    kustomization.yaml
-    values.yaml
-  order-service/
+  workspace-stack/
+    namespace.yaml
     kustomization.yaml
     values.yaml
 templates/charts/
@@ -71,7 +67,7 @@ If you want Argo CD to create tenant applications automatically after Jenkins wr
 
 That root application watches the `applications/` folder recursively. When the deploy pipeline writes:
 
-- `applications/.../<service>.yaml`
+- `applications/.../<stack>.yaml`
 
 Argo CD will discover the new child `Application` manifest and create it automatically on the next sync.
 
@@ -85,11 +81,11 @@ The Jenkins pipeline from the infra repo writes files here through:
 
 That script now:
 
-- creates `namespace.yaml`
-- creates `applications/.../<service>.yaml`
-- creates `kustomization.yaml`
-- creates `values.yaml`
-- expects a shared reusable chart at `templates/charts/app-template`
+- creates `applications/.../<stack>.yaml`
+- creates `apps/.../<stack>/namespace.yaml`
+- creates `apps/.../<stack>/kustomization.yaml`
+- creates `apps/.../<stack>/values.yaml`
+- expects a shared reusable umbrella chart at `templates/charts/app-template`
 
 ## What should not live here
 

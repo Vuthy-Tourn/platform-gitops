@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: "config-server-1"
+  name: "workspace-stack-1"
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "0"
   labels:
     app.kubernetes.io/managed-by: argocd
-    platform.devops/project-name: "config-server"
+    platform.devops/project-name: "workspace-stack"
 spec:
   project: "default"
   destination:
@@ -16,7 +16,7 @@ spec:
   source:
     repoURL: "https://github.com/Vuthy-Tourn/platform-gitops"
     targetRevision: "main"
-    path: "apps/1/1/config-server"
+    path: "apps/1/1/workspace-stack"
     kustomize: {}
   syncPolicy:
     automated:
