@@ -38,7 +38,7 @@ services:
     host: "flower-eureka-server-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "harbor.devith.it.com/microservices-deployment/c26d0c21-158d-450b-a521-728ee9/flower-eureka-server"
-      tag: "42-32ceddfb6c1a"
+      tag: "43-32ceddfb6c1a"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -95,7 +95,7 @@ services:
     host: "flower-gateway-server-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "harbor.devith.it.com/microservices-deployment/c26d0c21-158d-450b-a521-728ee9/flower-gateway-server"
-      tag: "42-724dea343c93"
+      tag: "43-724dea343c93"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -152,7 +152,7 @@ services:
     host: "flower-config-server-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "harbor.devith.it.com/microservices-deployment/c26d0c21-158d-450b-a521-728ee9/flower-config-server"
-      tag: "42-52c0871f548d"
+      tag: "43-52c0871f548d"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
