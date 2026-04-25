@@ -1,0 +1,201 @@
+workspace:
+  id: "ns-vuthy-tourn-bba33c3e"
+  userId: "b0bf95a5-d268-4edf-92a9-92fe4e"
+  namespace: "ns-vuthy-tourn-bba33c3e"
+  domain: "tochratana.com"
+
+imagePullSecrets:
+  - name: "registry-secret"
+
+defaults:
+  replicaCount: 1
+  image:
+    pullPolicy: "IfNotPresent"
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 4
+    targetCPUUtilizationPercentage: 70
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+services:
+  - name: "flower-eureka-server"
+    framework: "springboot-gradle"
+    serviceType: "internal"
+    syncWave: 0
+    replicaCount: 1
+    containerPort: 8761
+    servicePort: 8761
+    host: "flower-eureka-server-ns-vuthy-tourn-bba33c3e.tochratana.com"
+    image:
+      repository: "harbor.devith.it.com/microservices-deployment/b0bf95a5-d268-4edf-92a9-92fe4e/flower-eureka-server"
+      tag: "40-32ceddfb6c1a"
+      pullPolicy: "IfNotPresent"
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "128Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+    probes:
+      mode: "tcp"
+      startup:
+        enabled: true
+        initialDelaySeconds: 0
+        periodSeconds: 5
+        failureThreshold: 24
+      readiness:
+        enabled: true
+        path: "/"
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        failureThreshold: 3
+      liveness:
+        enabled: true
+        path: "/"
+        initialDelaySeconds: 30
+        periodSeconds: 15
+        failureThreshold: 3
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 4
+      targetCPUUtilizationPercentage: 70
+    ingress:
+      enabled: false
+      className: "nginx"
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      tls:
+        enabled: true
+        secretName: ""
+    serviceAccount:
+      create: true
+      name: ""
+      annotations: {}
+    env: []
+    envJson: "[]"
+  - name: "flower-gateway-server"
+    framework: "springboot-gradle"
+    serviceType: "gateway"
+    syncWave: 1
+    replicaCount: 1
+    containerPort: 9099
+    servicePort: 9099
+    host: "flower-gateway-server-ns-vuthy-tourn-bba33c3e.tochratana.com"
+    image:
+      repository: "harbor.devith.it.com/microservices-deployment/b0bf95a5-d268-4edf-92a9-92fe4e/flower-gateway-server"
+      tag: "40-724dea343c93"
+      pullPolicy: "IfNotPresent"
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "128Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+    probes:
+      mode: "tcp"
+      startup:
+        enabled: true
+        initialDelaySeconds: 0
+        periodSeconds: 5
+        failureThreshold: 24
+      readiness:
+        enabled: true
+        path: "/"
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        failureThreshold: 3
+      liveness:
+        enabled: true
+        path: "/"
+        initialDelaySeconds: 30
+        periodSeconds: 15
+        failureThreshold: 3
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 4
+      targetCPUUtilizationPercentage: 70
+    ingress:
+      enabled: true
+      className: "nginx"
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      tls:
+        enabled: true
+        secretName: ""
+    serviceAccount:
+      create: true
+      name: ""
+      annotations: {}
+    env: []
+    envJson: "[{\"name\":\"EUREKA_URL\",\"value\":\"http://flower-eureka-server.ns-vuthy-tourn-bba33c3e.svc.cluster.local:8761/eureka/\"}]"
+  - name: "flower-config-server"
+    framework: "springboot-gradle"
+    serviceType: "internal"
+    syncWave: 2
+    replicaCount: 1
+    containerPort: 8089
+    servicePort: 8089
+    host: "flower-config-server-ns-vuthy-tourn-bba33c3e.tochratana.com"
+    image:
+      repository: "harbor.devith.it.com/microservices-deployment/b0bf95a5-d268-4edf-92a9-92fe4e/flower-config-server"
+      tag: "40-52c0871f548d"
+      pullPolicy: "IfNotPresent"
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "128Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+    probes:
+      mode: "tcp"
+      startup:
+        enabled: true
+        initialDelaySeconds: 0
+        periodSeconds: 5
+        failureThreshold: 24
+      readiness:
+        enabled: true
+        path: "/"
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        failureThreshold: 3
+      liveness:
+        enabled: true
+        path: "/"
+        initialDelaySeconds: 30
+        periodSeconds: 15
+        failureThreshold: 3
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 4
+      targetCPUUtilizationPercentage: 70
+    ingress:
+      enabled: false
+      className: "nginx"
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      tls:
+        enabled: true
+        secretName: ""
+    serviceAccount:
+      create: true
+      name: ""
+      annotations: {}
+    env: []
+    envJson: "[{\"name\":\"EUREKA_URL\",\"value\":\"http://flower-eureka-server.ns-vuthy-tourn-bba33c3e.svc.cluster.local:8761/eureka/\"},{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://flower-gateway-server.ns-vuthy-tourn-bba33c3e.svc.cluster.local:9099/\"}]"
