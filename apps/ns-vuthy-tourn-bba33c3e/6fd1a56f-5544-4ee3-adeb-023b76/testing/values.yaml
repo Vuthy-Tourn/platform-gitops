@@ -31,7 +31,7 @@ services:
   - name: "flower-eureka-server"
     framework: "springboot-gradle"
     serviceType: "internal"
-    exposePublic: false
+    exposePublic: true
     primaryPublic: false
     syncWave: 0
     replicaCount: 1
@@ -74,7 +74,7 @@ services:
       maxReplicas: 4
       targetCPUUtilizationPercentage: 70
     ingress:
-      enabled: false
+      enabled: true
       className: "nginx"
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
