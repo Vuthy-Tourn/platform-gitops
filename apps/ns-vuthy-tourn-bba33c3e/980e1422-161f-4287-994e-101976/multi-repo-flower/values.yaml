@@ -31,7 +31,7 @@ services:
   - name: "flower-eureka-server"
     framework: "springboot-gradle"
     serviceType: "internal"
-    exposePublic: false
+    exposePublic: true
     primaryPublic: false
     syncWave: 0
     replicaCount: 1
