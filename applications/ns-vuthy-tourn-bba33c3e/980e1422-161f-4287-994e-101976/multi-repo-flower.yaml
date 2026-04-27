@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: "multi-repo-flower-980e1422-161f-4287-994e-101976"
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+  labels:
+    app.kubernetes.io/managed-by: argocd
+    platform.devops/project-name: "multi-repo-flower"
+spec:
+  project: "default"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: "ns-vuthy-tourn-bba33c3e"
+  source:
+    repoURL: "https://github.com/Vuthy-Tourn/platform-gitops"
+    targetRevision: "main"
+    path: "apps/ns-vuthy-tourn-bba33c3e/980e1422-161f-4287-994e-101976/multi-repo-flower"
+    kustomize: {}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+  info:
+    - name: templateRepo
+      value: "https://github.com/Vuthy-Tourn/platform-infra-testing"
+    - name: templateRevision
+      value: "main"
+    - name: templatePath
+      value: "helm/app-template"
