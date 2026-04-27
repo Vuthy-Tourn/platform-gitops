@@ -74,7 +74,7 @@ services:
       maxReplicas: 4
       targetCPUUtilizationPercentage: 70
     ingress:
-      enabled: false
+      enabled: true
       className: "nginx"
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
