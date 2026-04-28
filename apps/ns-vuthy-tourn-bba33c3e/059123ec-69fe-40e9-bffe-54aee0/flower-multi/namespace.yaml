@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ns-vuthy-tourn-bba33c3e
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  labels:
+    app.kubernetes.io/managed-by: argocd
+    platform.devops/user-namespace: "true"
+    platform.devops/user-id: "059123ec-69fe-40e9-bffe-54aee0"
+    platform.devops/workspace-id: "ns-vuthy-tourn-bba33c3e"
