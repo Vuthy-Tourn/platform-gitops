@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: "test-multi-268ab5ff-ad99-45f9-b4d2-5ce49a"
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+  labels:
+    app.kubernetes.io/managed-by: argocd
+    platform.devops/project-name: "test-multi"
+spec:
+  project: "default"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: "ns-vuthy-tourn-bba33c3e"
+  source:
+    repoURL: "https://github.com/Vuthy-Tourn/platform-gitops"
+    targetRevision: "main"
+    path: "apps/ns-vuthy-tourn-bba33c3e/268ab5ff-ad99-45f9-b4d2-5ce49a/test-multi"
+    kustomize: {}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+  info:
+    - name: templateRepo
+      value: "https://github.com/Vuthy-Tourn/platform-infra-testing"
+    - name: templateRevision
+      value: "main"
+    - name: templatePath
+      value: "helm/app-template"
