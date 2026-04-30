@@ -99,7 +99,7 @@ services:
     host: "test-multi-flower-config-server-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "harbor.devith.it.com/microservices-deployment/268ab5ff-ad99-45f9-b4d2-5ce49a/flower-config-server"
-      tag: "97-b3a0bd14d6f3"
+      tag: "99-1addc794d5c6"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
