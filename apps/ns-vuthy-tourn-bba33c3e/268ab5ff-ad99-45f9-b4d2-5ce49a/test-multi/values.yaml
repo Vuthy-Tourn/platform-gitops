@@ -94,8 +94,8 @@ services:
     primaryPublic: false
     syncWave: 1
     replicaCount: 1
-    containerPort: 8089
-    servicePort: 8089
+    containerPort: 8090
+    servicePort: 8090
     host: "test-multi-flower-config-server-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "harbor.devith.it.com/microservices-deployment/268ab5ff-ad99-45f9-b4d2-5ce49a/flower-config-server"
