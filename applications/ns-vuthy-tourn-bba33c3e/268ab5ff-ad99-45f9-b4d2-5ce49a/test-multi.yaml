@@ -19,7 +19,6 @@ spec:
     repoURL: "https://github.com/Vuthy-Tourn/platform-gitops"
     targetRevision: "main"
     path: "apps/ns-vuthy-tourn-bba33c3e/268ab5ff-ad99-45f9-b4d2-5ce49a/test-multi"
-    kustomize: {}
   syncPolicy:
     automated:
       prune: true
