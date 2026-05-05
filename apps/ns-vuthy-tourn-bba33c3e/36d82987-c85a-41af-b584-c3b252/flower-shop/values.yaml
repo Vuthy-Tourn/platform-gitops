@@ -37,7 +37,7 @@ services:
     replicaCount: 1
     containerPort: 8761
     servicePort: 8761
-    host: "flower-eureka-server.autonomous-istad.com"
+    host: "flower-eureka-server-testing.autonomous-istad.com"
     image:
       repository: "harbor.devith.it.com/microservices-deployment/36d82987-c85a-41af-b584-c3b252/flower-eureka-server"
       tag: "156-0c61df177ad2"
