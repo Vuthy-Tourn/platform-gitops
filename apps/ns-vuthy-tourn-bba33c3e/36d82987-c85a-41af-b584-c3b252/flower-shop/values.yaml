@@ -37,10 +37,10 @@ services:
     replicaCount: 1
     containerPort: 8761
     servicePort: 8761
-    host: "flower-shop-flower-eureka-server-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
+    host: "flower-eureka-server.autonomous-istad.com"
     image:
       repository: "harbor.devith.it.com/microservices-deployment/36d82987-c85a-41af-b584-c3b252/flower-eureka-server"
-      tag: "155-0c61df177ad2"
+      tag: "156-0c61df177ad2"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -99,7 +99,7 @@ services:
     host: "flower-shop-flower-config-server-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "harbor.devith.it.com/microservices-deployment/36d82987-c85a-41af-b584-c3b252/flower-config-server"
-      tag: "155-8e6811c6b464"
+      tag: "156-8e6811c6b464"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
