@@ -31,7 +31,7 @@ services:
   - name: "flower-eureka-server"
     framework: "springboot-gradle"
     serviceType: "internal"
-    exposePublic: false
+    exposePublic: true
     primaryPublic: false
     syncWave: 0
     replicaCount: 1
@@ -40,7 +40,7 @@ services:
     host: "flower-shop-flower-eureka-server-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "gohabor.anajak-khmer.site/microservices-deployment/caeac2ee-9d8e-4031-a6a8-9214e4/flower-eureka-server"
-      tag: "73-0c61df177ad2"
+      tag: "74-0c61df177ad2"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -74,7 +74,7 @@ services:
       maxReplicas: 4
       targetCPUUtilizationPercentage: 70
     ingress:
-      enabled: false
+      enabled: true
       className: "nginx"
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
@@ -99,7 +99,7 @@ services:
     host: "flower-shop-flower-config-server-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "gohabor.anajak-khmer.site/microservices-deployment/caeac2ee-9d8e-4031-a6a8-9214e4/flower-config-server"
-      tag: "73-85170601b5c3"
+      tag: "74-85170601b5c3"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -149,7 +149,7 @@ services:
   - name: "flower-gateway-server"
     framework: "springboot-gradle"
     serviceType: "gateway"
-    exposePublic: true
+    exposePublic: false
     primaryPublic: false
     syncWave: 2
     replicaCount: 1
@@ -158,7 +158,7 @@ services:
     host: "flower-shop-flower-gateway-server-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "gohabor.anajak-khmer.site/microservices-deployment/caeac2ee-9d8e-4031-a6a8-9214e4/flower-gateway-server"
-      tag: "73-34cb0b793458"
+      tag: "74-e60437475cf0"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -192,7 +192,7 @@ services:
       maxReplicas: 4
       targetCPUUtilizationPercentage: 70
     ingress:
-      enabled: true
+      enabled: false
       className: "nginx"
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
@@ -217,7 +217,7 @@ services:
     host: "flower-shop-product-service-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "gohabor.anajak-khmer.site/microservices-deployment/caeac2ee-9d8e-4031-a6a8-9214e4/product-service"
-      tag: "73-d278ce054042"
+      tag: "74-d278ce054042"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
