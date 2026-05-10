@@ -40,7 +40,7 @@ services:
     host: "flower-shop-flower-eureka-server-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "gohabor.anajak-khmer.site/microservices-deployment/caeac2ee-9d8e-4031-a6a8-9214e4/flower-eureka-server"
-      tag: "63-0c61df177ad2"
+      tag: "70-0c61df177ad2"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -99,7 +99,7 @@ services:
     host: "flower-shop-flower-config-server-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "gohabor.anajak-khmer.site/microservices-deployment/caeac2ee-9d8e-4031-a6a8-9214e4/flower-config-server"
-      tag: "63-85170601b5c3"
+      tag: "70-85170601b5c3"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -146,19 +146,78 @@ services:
       annotations: {}
     env: []
     envJson: "[{\"name\":\"GIT_CONFIG_URI\",\"value\":\"\"},{\"name\":\"GIT_CONFIG_LABEL\",\"value\":\"main\"},{\"name\":\"EUREKA_URL\",\"value\":\"http://flower-shop-flower-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\"}]"
+  - name: "flower-gateway-server"
+    framework: "springboot-gradle"
+    serviceType: "gateway"
+    exposePublic: true
+    primaryPublic: false
+    syncWave: 2
+    replicaCount: 1
+    containerPort: 9099
+    servicePort: 9099
+    host: "flower-shop-flower-gateway-server-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
+    image:
+      repository: "gohabor.anajak-khmer.site/microservices-deployment/caeac2ee-9d8e-4031-a6a8-9214e4/flower-gateway-server"
+      tag: "70-2861d8c77350"
+      pullPolicy: "IfNotPresent"
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "128Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+    probes:
+      mode: "tcp"
+      startup:
+        enabled: true
+        initialDelaySeconds: 0
+        periodSeconds: 5
+        failureThreshold: 24
+      readiness:
+        enabled: true
+        path: "/"
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        failureThreshold: 3
+      liveness:
+        enabled: true
+        path: "/"
+        initialDelaySeconds: 30
+        periodSeconds: 15
+        failureThreshold: 3
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 4
+      targetCPUUtilizationPercentage: 70
+    ingress:
+      enabled: true
+      className: "nginx"
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      tls:
+        enabled: true
+        secretName: ""
+    serviceAccount:
+      create: true
+      name: ""
+      annotations: {}
+    env: []
+    envJson: "[{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://flower-shop-flower-config-server.ns-vuthy-tourn-bba33c3e.svc:8090/\"},{\"name\":\"EUREKA_URL\",\"value\":\"http://flower-shop-flower-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\"}]"
   - name: "product-service"
     framework: "springboot-gradle"
     serviceType: "internal"
     exposePublic: false
     primaryPublic: false
-    syncWave: 1
+    syncWave: 2
     replicaCount: 1
     containerPort: 8082
     servicePort: 8082
     host: "flower-shop-product-service-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "gohabor.anajak-khmer.site/microservices-deployment/caeac2ee-9d8e-4031-a6a8-9214e4/product-service"
-      tag: "63-4d9794b8dc96"
+      tag: "70-4d9794b8dc96"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -193,65 +252,6 @@ services:
       targetCPUUtilizationPercentage: 70
     ingress:
       enabled: false
-      className: "nginx"
-      annotations:
-        cert-manager.io/cluster-issuer: "letsencrypt-prod"
-      tls:
-        enabled: true
-        secretName: ""
-    serviceAccount:
-      create: true
-      name: ""
-      annotations: {}
-    env: []
-    envJson: "[{\"name\":\"EUREKA_URL\",\"value\":\"http://flower-shop-flower-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\"}]"
-  - name: "flower-gateway-server"
-    framework: "springboot-gradle"
-    serviceType: "gateway"
-    exposePublic: true
-    primaryPublic: false
-    syncWave: 2
-    replicaCount: 1
-    containerPort: 9099
-    servicePort: 9099
-    host: "flower-shop-flower-gateway-server-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
-    image:
-      repository: "gohabor.anajak-khmer.site/microservices-deployment/caeac2ee-9d8e-4031-a6a8-9214e4/flower-gateway-server"
-      tag: "63-2861d8c77350"
-      pullPolicy: "IfNotPresent"
-    resources:
-      requests:
-        cpu: "100m"
-        memory: "128Mi"
-      limits:
-        cpu: "500m"
-        memory: "512Mi"
-    probes:
-      mode: "tcp"
-      startup:
-        enabled: true
-        initialDelaySeconds: 0
-        periodSeconds: 5
-        failureThreshold: 24
-      readiness:
-        enabled: true
-        path: "/"
-        initialDelaySeconds: 10
-        periodSeconds: 10
-        failureThreshold: 3
-      liveness:
-        enabled: true
-        path: "/"
-        initialDelaySeconds: 30
-        periodSeconds: 15
-        failureThreshold: 3
-    autoscaling:
-      enabled: true
-      minReplicas: 1
-      maxReplicas: 4
-      targetCPUUtilizationPercentage: 70
-    ingress:
-      enabled: true
       className: "nginx"
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
