@@ -149,8 +149,8 @@ services:
   - name: "flower-gateway-server"
     framework: "springboot-gradle"
     serviceType: "gateway"
-    exposePublic: false
-    primaryPublic: false
+    exposePublic: true
+    primaryPublic: true
     syncWave: 2
     replicaCount: 1
     containerPort: 9099
