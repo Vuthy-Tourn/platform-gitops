@@ -158,7 +158,7 @@ services:
     host: "error.autonomous-istad.com"
     image:
       repository: "gohabor.anajak-khmer.site/microservices-deployment/64780181-e021-45be-9fe0-9dda0c/flower-gateway-server"
-      tag: "66-9f6261a2b568"
+      tag: "64-9f6261a2b568"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
