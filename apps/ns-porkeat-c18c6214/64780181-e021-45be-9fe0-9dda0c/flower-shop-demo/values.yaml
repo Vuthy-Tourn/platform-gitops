@@ -155,7 +155,7 @@ services:
     replicaCount: 1
     containerPort: 9099
     servicePort: 9099
-    host: "flower-shop-demo-flower-gateway-server-ns-porkeat-c18c6214.autonomous-istad.com"
+    host: "error.autonomous-istad.com"
     image:
       repository: "gohabor.anajak-khmer.site/microservices-deployment/64780181-e021-45be-9fe0-9dda0c/flower-gateway-server"
       tag: "66-9f6261a2b568"
