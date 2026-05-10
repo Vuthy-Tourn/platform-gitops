@@ -40,7 +40,7 @@ services:
     host: "flower-shop-flower-eureka-server-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "gohabor.anajak-khmer.site/microservices-deployment/caeac2ee-9d8e-4031-a6a8-9214e4/flower-eureka-server"
-      tag: "53-0c61df177ad2"
+      tag: "55-0c61df177ad2"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -99,7 +99,7 @@ services:
     host: "flower-shop-flower-config-server-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "gohabor.anajak-khmer.site/microservices-deployment/caeac2ee-9d8e-4031-a6a8-9214e4/flower-config-server"
-      tag: "53-ca3c746202f7"
+      tag: "55-ca3c746202f7"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -158,7 +158,7 @@ services:
     host: "vuthy-gateway-server-flower.autonomous-istad.com"
     image:
       repository: "gohabor.anajak-khmer.site/microservices-deployment/caeac2ee-9d8e-4031-a6a8-9214e4/flower-gateway-server"
-      tag: "53-2861d8c77350"
+      tag: "55-2861d8c77350"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
