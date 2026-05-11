@@ -37,7 +37,7 @@ services:
     replicaCount: 1
     containerPort: 8761
     servicePort: 8761
-    host: "porkeat-microservice-wor-flower-eureka-server-ns-porkeat-c18c6214.autonomous-istad.com"
+    host: "flower-eureka-server-ns-porkeat-c18c6214.autonomous-istad.com"
     image:
       repository: "gohabor.anajak-khmer.site/microservices-deployment/64780181-e021-45be-9fe0-9dda0c/flower-eureka-server"
       tag: "78-9e896256e038"
@@ -96,7 +96,7 @@ services:
     replicaCount: 1
     containerPort: 8090
     servicePort: 8090
-    host: "porkeat-microservice-wor-flower-config-server-ns-porkeat-c18c6214.autonomous-istad.com"
+    host: "flower-config-server-ns-porkeat-c18c6214.autonomous-istad.com"
     image:
       repository: "gohabor.anajak-khmer.site/microservices-deployment/64780181-e021-45be-9fe0-9dda0c/flower-config-server"
       tag: "78-86a8a47d8f79"
@@ -155,7 +155,7 @@ services:
     replicaCount: 1
     containerPort: 9099
     servicePort: 9099
-    host: "porkeat-microservice-wor-flower-gateway-server-ns-porkeat-c18c6214.autonomous-istad.com"
+    host: "flower-gateway-server-ns-porkeat-c18c6214.autonomous-istad.com"
     image:
       repository: "gohabor.anajak-khmer.site/microservices-deployment/64780181-e021-45be-9fe0-9dda0c/flower-gateway-server"
       tag: "78-49550a299319"
