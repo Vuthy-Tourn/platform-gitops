@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ns-porkeat-c18c6214
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  labels:
+    app.kubernetes.io/managed-by: argocd
+    platform.devops/user-namespace: "true"
+    platform.devops/user-id: "64780181-e021-45be-9fe0-9dda0c"
+    platform.devops/workspace-id: "ns-porkeat-c18c6214"
