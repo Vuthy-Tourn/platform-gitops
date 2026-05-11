@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: "porkeat-microservice-workspace-64780181-e021-45be-9fe0-"
+  name: "porkeat-microservice-workspace-64780181-e021-45be-9fe0"
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
