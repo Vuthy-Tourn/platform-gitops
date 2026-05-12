@@ -39,8 +39,8 @@ services:
     servicePort: 8383
     host: "product-service-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
-      repository: "docker.io/vuthytourn/product-service"
-      tag: "128-1d5f437168b7"
+      repository: "gohabor.anajak-khmer.site/microservices-deployment/caeac2ee-9d8e-4031-a6a8-9214e4/product-service"
+      tag: "129-ee7b7b637b62"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -98,8 +98,8 @@ services:
     servicePort: 8282
     host: "api-gateway-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
-      repository: "docker.io/vuthytourn/api-gateway"
-      tag: "128-1d5f437168b7"
+      repository: "gohabor.anajak-khmer.site/microservices-deployment/caeac2ee-9d8e-4031-a6a8-9214e4/api-gateway"
+      tag: "129-ee7b7b637b62"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
