@@ -1,15 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: "ns-vuthy-tourn-bba33c3e-caeac2ee-9d8e-4031-a6a8-9214e4"
+  name: "sample-micro-caeac2ee-9d8e-4031-a6a8-9214e4"
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "-1"
+    argocd.argoproj.io/sync-wave: "0"
   labels:
     app.kubernetes.io/managed-by: argocd
-    platform.devops/project-name: "workspace"
+    platform.devops/project-name: "sample-micro"
 spec:
   project: "default"
   destination:
@@ -18,7 +18,7 @@ spec:
   source:
     repoURL: "https://github.com/Vuthy-Tourn/platform-gitops"
     targetRevision: "main"
-    path: "apps/ns-vuthy-tourn-bba33c3e/caeac2ee-9d8e-4031-a6a8-9214e4/_workspace"
+    path: "apps/ns-vuthy-tourn-bba33c3e/caeac2ee-9d8e-4031-a6a8-9214e4/sample-micro"
   syncPolicy:
     automated:
       prune: true
@@ -33,4 +33,4 @@ spec:
     - name: templateRevision
       value: "main"
     - name: templatePath
-      value: "workspace-bootstrap"
+      value: "helm/app-template"
