@@ -40,7 +40,7 @@ services:
     host: "product-service-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "vuthytourn/product-service"
-      tag: "182-58030f8be491"
+      tag: "181-58030f8be491"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -99,7 +99,7 @@ services:
     host: "api-gateway-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "vuthytourn/api-gateway"
-      tag: "182-58030f8be491"
+      tag: "181-58030f8be491"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
