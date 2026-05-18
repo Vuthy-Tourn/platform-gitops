@@ -40,7 +40,7 @@ services:
     host: "api-gateway-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "vuthytourn/api-gateway"
-      tag: "194-99f793c75ef8"
+      tag: "197-99f793c75ef8"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -86,7 +86,7 @@ services:
       name: ""
       annotations: {}
     env: []
-    envJson: "[{\"name\":\"UPSTREAM_BASE_URL\",\"value\":\"http://localhost:8383\"},{\"name\":\"USER_SERVICE_URL\",\"value\":\"http://localhost:8181\"}]"
+    envJson: "[{\"name\":\"UPSTREAM_BASE_URL\",\"value\":\"http://localhost:8383\",\"secret\":false},{\"name\":\"USER_SERVICE_URL\",\"value\":\"http://localhost:8181\",\"secret\":false}]"
   - name: "product-service"
     framework: "springboot-gradle"
     serviceType: "internal"
@@ -99,7 +99,7 @@ services:
     host: "product-service-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "vuthytourn/product-service"
-      tag: "194-99f793c75ef8"
+      tag: "197-99f793c75ef8"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -145,4 +145,4 @@ services:
       name: ""
       annotations: {}
     env: []
-    envJson: "[{\"name\":\"DB_HOST\",\"value\":\"jdbc:postgresql://db-mydb-pg-c01644ce.db.autonomous-istad.com:5432/mydb\"},{\"name\":\"DB_USERNAME\",\"value\":\"admin\"},{\"name\":\"DB_PASSWORD\",\"value\":\"\"}]"
+    envJson: "[{\"name\":\"DB_HOST\",\"value\":\"jdbc:postgresql://db-mydb-pg-c01644ce.db.autonomous-istad.com:5432/mydb\",\"secret\":false},{\"name\":\"DB_USERNAME\",\"value\":\"admin\",\"secret\":false},{\"name\":\"DB_PASSWORD\",\"value\":\"\",\"secret\":true}]"
