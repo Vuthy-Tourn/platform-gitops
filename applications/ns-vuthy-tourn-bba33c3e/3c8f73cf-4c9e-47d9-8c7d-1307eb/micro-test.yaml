@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: "micro-test-3c8f73cf-4c9e-47d9-8c7d-1307eb"
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+  labels:
+    app.kubernetes.io/managed-by: argocd
+    platform.devops/project-name: "micro-test"
+spec:
+  project: "default"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: "ns-vuthy-tourn-bba33c3e"
+  source:
+    repoURL: "https://github.com/Vuthy-Tourn/platform-gitops"
+    targetRevision: "main"
+    path: "apps/ns-vuthy-tourn-bba33c3e/3c8f73cf-4c9e-47d9-8c7d-1307eb/micro-test"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+  info:
+    - name: templateRepo
+      value: "https://github.com/Vuthy-Tourn/platform-infra-testing"
+    - name: templateRevision
+      value: "main"
+    - name: templatePath
+      value: "helm/app-template"
