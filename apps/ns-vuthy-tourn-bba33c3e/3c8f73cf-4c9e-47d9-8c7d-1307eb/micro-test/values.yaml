@@ -212,8 +212,8 @@ services:
     primaryPublic: false
     syncWave: 3
     replicaCount: 1
-    containerPort: 8383
-    servicePort: 8383
+    containerPort: 8081
+    servicePort: 8081
     host: "product-service-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "vuthytourn/product-service"
