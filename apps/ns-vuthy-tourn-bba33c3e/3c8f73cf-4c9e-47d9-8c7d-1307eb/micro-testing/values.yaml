@@ -99,7 +99,7 @@ services:
     host: "config-server-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "vuthytourn/config-server"
-      tag: "223-f90c0b2ec9d1"
+      tag: "225-49a93aebc0bc"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
