@@ -40,7 +40,7 @@ services:
     host: "config-server-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "vuthytourn/config-server"
-      tag: "234-e18de474468d"
+      tag: "239-e18de474468d"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -99,7 +99,7 @@ services:
     host: "eureka-server-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "vuthytourn/eureka-server"
-      tag: "234-e18de474468d"
+      tag: "239-e18de474468d"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -158,7 +158,7 @@ services:
     host: "product-service-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "vuthytourn/product-service"
-      tag: "234-e18de474468d"
+      tag: "239-e18de474468d"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -204,7 +204,7 @@ services:
       name: ""
       annotations: {}
     env: []
-    envJson: "[{\"name\":\"SERVER_PORT\",\"value\":\"8081\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_URL\",\"value\":\"jdbc:postgresql:/db-postgresdb-pg-4038db62.db.autonomous-istad.com/mydb\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_USERNAME\",\"value\":\"admin\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_DRIVER_CLASS_NAME\",\"value\":\"org.postgresql.Driver\",\"secret\":false},{\"name\":\"EUREKA_SERVER_URL\",\"value\":\"http://micro-testing-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_PASSWORD\",\"value\":\"\",\"secret\":true},{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://micro-testing-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"SPRING_CONFIG_IMPORT\",\"value\":\"optional:configserver:http://micro-testing-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_URL\",\"value\":\"http://micro-testing-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"EUREKA_CLIENT_SERVICEURL_DEFAULTZONE\",\"value\":\"http://micro-testing-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false}]"
+    envJson: "[{\"name\":\"SERVER_PORT\",\"value\":\"8081\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_URL\",\"value\":\"jdbc:postgresql://db-postgresdb-pg-4038db62.db.autonomous-istad.com/mydb\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_USERNAME\",\"value\":\"admin\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_DRIVER_CLASS_NAME\",\"value\":\"org.postgresql.Driver\",\"secret\":false},{\"name\":\"EUREKA_SERVER_URL\",\"value\":\"http://micro-testing-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_PASSWORD\",\"value\":\"\",\"secret\":true},{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://micro-testing-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"SPRING_CONFIG_IMPORT\",\"value\":\"optional:configserver:http://micro-testing-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_URL\",\"value\":\"http://micro-testing-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"EUREKA_CLIENT_SERVICEURL_DEFAULTZONE\",\"value\":\"http://micro-testing-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false}]"
   - name: "api-gateway"
     framework: "springboot-gradle"
     serviceType: "gateway"
@@ -217,7 +217,7 @@ services:
     host: "api-gateway-ns-vuthy-tourn-bba33c3e.autonomous-istad.com"
     image:
       repository: "vuthytourn/api-gateway"
-      tag: "234-e18de474468d"
+      tag: "239-e18de474468d"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
