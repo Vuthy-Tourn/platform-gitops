@@ -1,0 +1,148 @@
+workspace:
+  id: "ns-vuthy-tourn-bba33c3e"
+  userId: "0b438b4f-9b5a-4db0-8c32-9007c2"
+  namespace: "ns-vuthy-tourn-bba33c3e"
+  domain: "autonomous-istad.com"
+
+imagePullSecrets:
+  - name: "registry-secret"
+
+defaults:
+  replicaCount: 1
+  image:
+    pullPolicy: "IfNotPresent"
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 4
+    targetCPUUtilizationPercentage: 70
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+services:
+  - name: "product-service"
+    framework: "springboot-gradle"
+    serviceType: "internal"
+    exposePublic: false
+    primaryPublic: false
+    syncWave: 0
+    replicaCount: 1
+    containerPort: 8081
+    servicePort: 8081
+    host: "product-service-60a872-bba33c3e.autonomous-istad.com"
+    image:
+      repository: "vuthytourn/product-service"
+      tag: "263-e18de474468d"
+      pullPolicy: "IfNotPresent"
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "128Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+    probes:
+      mode: "tcp"
+      startup:
+        enabled: true
+        initialDelaySeconds: 0
+        periodSeconds: 5
+        failureThreshold: 24
+      readiness:
+        enabled: true
+        path: "/"
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        failureThreshold: 3
+      liveness:
+        enabled: true
+        path: "/"
+        initialDelaySeconds: 30
+        periodSeconds: 15
+        failureThreshold: 3
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 4
+      targetCPUUtilizationPercentage: 70
+    ingress:
+      enabled: false
+      className: "nginx"
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      tls:
+        enabled: true
+        secretName: ""
+    serviceAccount:
+      create: true
+      name: ""
+      annotations: {}
+    env: []
+    envJson: "[{\"name\":\"SERVER_PORT\",\"value\":\"8081\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_URL\",\"value\":\"jdbc:postgresql://localhost:5434/mydb\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_USERNAME\",\"value\":\"admin\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_DRIVER_CLASS_NAME\",\"value\":\"org.postgresql.Driver\",\"secret\":false},{\"name\":\"EUREKA_SERVER_URL\",\"value\":\"http://localhost:8761/eureka\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_PASSWORD\",\"value\":\"\",\"secret\":true}]"
+  - name: "api-gateway"
+    framework: "springboot-gradle"
+    serviceType: "gateway"
+    exposePublic: true
+    primaryPublic: true
+    syncWave: 1
+    replicaCount: 1
+    containerPort: 8282
+    servicePort: 8282
+    host: "api-gateway-60a872-bba33c3e.autonomous-istad.com"
+    image:
+      repository: "vuthytourn/api-gateway"
+      tag: "263-e18de474468d"
+      pullPolicy: "IfNotPresent"
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "128Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+    probes:
+      mode: "tcp"
+      startup:
+        enabled: true
+        initialDelaySeconds: 0
+        periodSeconds: 5
+        failureThreshold: 24
+      readiness:
+        enabled: true
+        path: "/"
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        failureThreshold: 3
+      liveness:
+        enabled: true
+        path: "/"
+        initialDelaySeconds: 30
+        periodSeconds: 15
+        failureThreshold: 3
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 4
+      targetCPUUtilizationPercentage: 70
+    ingress:
+      enabled: true
+      className: "nginx"
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      tls:
+        enabled: true
+        secretName: ""
+    serviceAccount:
+      create: true
+      name: ""
+      annotations: {}
+    env: []
+    envJson: "[{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://localhost:8888\",\"secret\":false},{\"name\":\"EUREKA_SERVER_URL\",\"value\":\"http://localhost:8761/eureka\",\"secret\":false},{\"name\":\"SERVER_PORT\",\"value\":\"8282\",\"secret\":false},{\"name\":\"UPSTREAM_BASE_URL\",\"value\":\"http://microservices-product-service.ns-vuthy-tourn-bba33c3e.svc:8081/\",\"secret\":false},{\"name\":\"PRODUCT_SERVICE_URL\",\"value\":\"http://microservices-product-service.ns-vuthy-tourn-bba33c3e.svc:8081/\",\"secret\":false},{\"name\":\"PRODUCT_SERVICE_BASE_URL\",\"value\":\"http://microservices-product-service.ns-vuthy-tourn-bba33c3e.svc:8081/\",\"secret\":false}]"
