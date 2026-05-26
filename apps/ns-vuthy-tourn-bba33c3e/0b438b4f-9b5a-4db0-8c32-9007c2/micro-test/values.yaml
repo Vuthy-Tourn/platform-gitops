@@ -40,7 +40,7 @@ services:
     host: "config-server-37a511-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/micro-test/config-server"
-      tag: "280-a939548202f4"
+      tag: "281-a939548202f4"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -99,7 +99,7 @@ services:
     host: "eureka-server-37a511-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/micro-test/eureka-server"
-      tag: "280-a939548202f4"
+      tag: "281-a939548202f4"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -158,7 +158,7 @@ services:
     host: "product-service-37a511-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/micro-test/product-service"
-      tag: "280-a939548202f4"
+      tag: "281-a939548202f4"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -204,7 +204,7 @@ services:
       name: ""
       annotations: {}
     env: []
-    envJson: "[{\"name\":\"SERVER_PORT\",\"value\":\"8081\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_URL\",\"value\":\"jdbc:postgresql://db-postgres-pg-66d6b33e.db.autonomous-istad.com/mydb\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_USERNAME\",\"value\":\"admin\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_DRIVER_CLASS_NAME\",\"value\":\"org.postgresql.Driver\",\"secret\":false},{\"name\":\"EUREKA_SERVER_URL\",\"value\":\"http://micro-test-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_PASSWORD\",\"value\":\"\",\"secret\":true},{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://micro-test-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"SPRING_CONFIG_IMPORT\",\"value\":\"optional:configserver:http://micro-test-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_URL\",\"value\":\"http://micro-test-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"EUREKA_CLIENT_SERVICEURL_DEFAULTZONE\",\"value\":\"http://micro-test-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false}]"
+    envJson: "[{\"name\":\"SERVER_PORT\",\"value\":\"8081\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_URL\",\"value\":\"jdbc:postgresql://db-mypostgres-pg-01c69073.db.autonomous-istad.com/mydb\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_USERNAME\",\"value\":\"admin\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_DRIVER_CLASS_NAME\",\"value\":\"org.postgresql.Driver\",\"secret\":false},{\"name\":\"EUREKA_SERVER_URL\",\"value\":\"http://micro-test-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_PASSWORD\",\"value\":\"\",\"secret\":true},{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://micro-test-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"SPRING_CONFIG_IMPORT\",\"value\":\"optional:configserver:http://micro-test-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_URL\",\"value\":\"http://micro-test-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"EUREKA_CLIENT_SERVICEURL_DEFAULTZONE\",\"value\":\"http://micro-test-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false}]"
   - name: "api-gateway"
     framework: "springboot-gradle"
     serviceType: "gateway"
@@ -217,7 +217,7 @@ services:
     host: "api-gateway-37a511-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/micro-test/api-gateway"
-      tag: "280-a939548202f4"
+      tag: "281-a939548202f4"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
