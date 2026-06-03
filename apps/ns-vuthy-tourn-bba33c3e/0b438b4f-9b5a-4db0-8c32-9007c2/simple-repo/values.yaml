@@ -40,7 +40,7 @@ services:
     host: "config-server-420c6a-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/simple-repo/config-server"
-      tag: "10-480c6e165c44"
+      tag: "11-480c6e165c44"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -50,21 +50,22 @@ services:
         cpu: "500m"
         memory: "512Mi"
     probes:
-      mode: "tcp"
+      mode: "http"
       startup:
         enabled: true
+        path: "/actuator/health"
         initialDelaySeconds: 0
         periodSeconds: 5
         failureThreshold: 24
       readiness:
         enabled: true
-        path: "/"
+        path: "/actuator/health/readiness"
         initialDelaySeconds: 10
         periodSeconds: 10
         failureThreshold: 3
       liveness:
         enabled: true
-        path: "/"
+        path: "/actuator/health/liveness"
         initialDelaySeconds: 30
         periodSeconds: 15
         failureThreshold: 3
@@ -99,7 +100,7 @@ services:
     host: "eureka-server-420c6a-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/simple-repo/eureka-server"
-      tag: "10-480c6e165c44"
+      tag: "11-480c6e165c44"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -109,21 +110,22 @@ services:
         cpu: "500m"
         memory: "512Mi"
     probes:
-      mode: "tcp"
+      mode: "http"
       startup:
         enabled: true
+        path: "/actuator/health"
         initialDelaySeconds: 0
         periodSeconds: 5
         failureThreshold: 24
       readiness:
         enabled: true
-        path: "/"
+        path: "/actuator/health/readiness"
         initialDelaySeconds: 10
         periodSeconds: 10
         failureThreshold: 3
       liveness:
         enabled: true
-        path: "/"
+        path: "/actuator/health/liveness"
         initialDelaySeconds: 30
         periodSeconds: 15
         failureThreshold: 3
@@ -146,6 +148,8 @@ services:
       annotations: {}
     env: []
     envJson: "[{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://simple-repo-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"SERVER_PORT\",\"value\":\"8761\",\"secret\":false},{\"name\":\"EUREKA_INSTANCE_HOSTNAME\",\"value\":\"localhost\",\"secret\":false},{\"name\":\"SPRING_CONFIG_IMPORT\",\"value\":\"optional:configserver:http://simple-repo-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false}]"
+    dependsOn:
+      - "config-server"
   - name: "category-service"
     framework: "springboot-gradle"
     serviceType: "internal"
@@ -158,7 +162,7 @@ services:
     host: "category-service-420c6a-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/simple-repo/category-service"
-      tag: "10-480c6e165c44"
+      tag: "11-480c6e165c44"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -168,21 +172,22 @@ services:
         cpu: "500m"
         memory: "512Mi"
     probes:
-      mode: "tcp"
+      mode: "http"
       startup:
         enabled: true
+        path: "/actuator/health"
         initialDelaySeconds: 0
         periodSeconds: 5
         failureThreshold: 24
       readiness:
         enabled: true
-        path: "/"
+        path: "/actuator/health/readiness"
         initialDelaySeconds: 10
         periodSeconds: 10
         failureThreshold: 3
       liveness:
         enabled: true
-        path: "/"
+        path: "/actuator/health/liveness"
         initialDelaySeconds: 30
         periodSeconds: 15
         failureThreshold: 3
@@ -205,6 +210,9 @@ services:
       annotations: {}
     env: []
     envJson: "[{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://simple-repo-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_SERVER_URL\",\"value\":\"http://simple-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"SERVER_PORT\",\"value\":\"8484\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_URL\",\"value\":\"jdbc:postgresql://db-mypostgres-pg-7a61e140.db.autonomous-istad.com:15434/mydb?sslmode=require\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_USERNAME\",\"value\":\"admin\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_DRIVER_CLASS_NAME\",\"value\":\"org.postgresql.Driver\",\"secret\":false},{\"name\":\"APP_CORS_ALLOWED_ORIGIN_PATTERNS\",\"value\":\"*\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_PASSWORD\",\"value\":\"\",\"secret\":true},{\"name\":\"SPRING_CONFIG_IMPORT\",\"value\":\"optional:configserver:http://simple-repo-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_URL\",\"value\":\"http://simple-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"EUREKA_CLIENT_SERVICEURL_DEFAULTZONE\",\"value\":\"http://simple-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false}]"
+    dependsOn:
+      - "config-server"
+      - "eureka-server"
   - name: "product-service"
     framework: "springboot-gradle"
     serviceType: "internal"
@@ -217,7 +225,7 @@ services:
     host: "product-service-420c6a-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/simple-repo/product-service"
-      tag: "10-480c6e165c44"
+      tag: "11-480c6e165c44"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -227,21 +235,22 @@ services:
         cpu: "500m"
         memory: "512Mi"
     probes:
-      mode: "tcp"
+      mode: "http"
       startup:
         enabled: true
+        path: "/actuator/health"
         initialDelaySeconds: 0
         periodSeconds: 5
         failureThreshold: 24
       readiness:
         enabled: true
-        path: "/"
+        path: "/actuator/health/readiness"
         initialDelaySeconds: 10
         periodSeconds: 10
         failureThreshold: 3
       liveness:
         enabled: true
-        path: "/"
+        path: "/actuator/health/liveness"
         initialDelaySeconds: 30
         periodSeconds: 15
         failureThreshold: 3
@@ -264,6 +273,9 @@ services:
       annotations: {}
     env: []
     envJson: "[{\"name\":\"SERVER_PORT\",\"value\":\"8081\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_URL\",\"value\":\"jdbc:postgresql://db-mypostgres-pg-7a61e140.db.autonomous-istad.com:15434/mydb?sslmode=require\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_USERNAME\",\"value\":\"admin\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_DRIVER_CLASS_NAME\",\"value\":\"org.postgresql.Driver\",\"secret\":false},{\"name\":\"EUREKA_SERVER_URL\",\"value\":\"http://simple-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"APP_CORS_ALLOWED_ORIGIN_PATTERNS\",\"value\":\"*\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_PASSWORD\",\"value\":\"\",\"secret\":true},{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://simple-repo-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"SPRING_CONFIG_IMPORT\",\"value\":\"optional:configserver:http://simple-repo-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_URL\",\"value\":\"http://simple-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"EUREKA_CLIENT_SERVICEURL_DEFAULTZONE\",\"value\":\"http://simple-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false}]"
+    dependsOn:
+      - "config-server"
+      - "eureka-server"
   - name: "api-gateway"
     framework: "springboot-gradle"
     serviceType: "gateway"
@@ -276,7 +288,7 @@ services:
     host: "api-gateway-420c6a-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/simple-repo/api-gateway"
-      tag: "10-480c6e165c44"
+      tag: "11-480c6e165c44"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -286,21 +298,22 @@ services:
         cpu: "500m"
         memory: "512Mi"
     probes:
-      mode: "tcp"
+      mode: "http"
       startup:
         enabled: true
+        path: "/actuator/health"
         initialDelaySeconds: 0
         periodSeconds: 5
         failureThreshold: 24
       readiness:
         enabled: true
-        path: "/"
+        path: "/actuator/health/readiness"
         initialDelaySeconds: 10
         periodSeconds: 10
         failureThreshold: 3
       liveness:
         enabled: true
-        path: "/"
+        path: "/actuator/health/liveness"
         initialDelaySeconds: 30
         periodSeconds: 15
         failureThreshold: 3
@@ -323,3 +336,6 @@ services:
       annotations: {}
     env: []
     envJson: "[{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://simple-repo-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_SERVER_URL\",\"value\":\"http://simple-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"SERVER_PORT\",\"value\":\"8282\",\"secret\":false},{\"name\":\"UPSTREAM_BASE_URL\",\"value\":\"http://simple-repo-category-service.ns-vuthy-tourn-bba33c3e.svc:8484/\",\"secret\":false},{\"name\":\"PRODUCT_SERVICE_URL\",\"value\":\"http://simple-repo-product-service.ns-vuthy-tourn-bba33c3e.svc:8081/\",\"secret\":false},{\"name\":\"PRODUCT_SERVICE_BASE_URL\",\"value\":\"http://simple-repo-product-service.ns-vuthy-tourn-bba33c3e.svc:8081/\",\"secret\":false},{\"name\":\"CATEGORY_SERVICE_URL\",\"value\":\"http://simple-repo-category-service.ns-vuthy-tourn-bba33c3e.svc:8484/\",\"secret\":false},{\"name\":\"CATEGORY_SERVICE_BASE_URL\",\"value\":\"http://simple-repo-category-service.ns-vuthy-tourn-bba33c3e.svc:8484/\",\"secret\":false},{\"name\":\"EUREKA_URL\",\"value\":\"http://simple-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"EUREKA_CLIENT_SERVICEURL_DEFAULTZONE\",\"value\":\"http://simple-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"SPRING_CONFIG_IMPORT\",\"value\":\"optional:configserver:http://simple-repo-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false}]"
+    dependsOn:
+      - "config-server"
+      - "eureka-server"
