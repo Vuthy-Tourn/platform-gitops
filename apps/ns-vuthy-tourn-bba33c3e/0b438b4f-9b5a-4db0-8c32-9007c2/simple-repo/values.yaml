@@ -40,7 +40,7 @@ services:
     host: "config-server-420c6a-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/simple-repo/config-server"
-      tag: "18-480c6e165c44"
+      tag: "26-480c6e165c44"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -100,7 +100,7 @@ services:
     host: "eureka-server-420c6a-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/simple-repo/eureka-server"
-      tag: "18-480c6e165c44"
+      tag: "26-480c6e165c44"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -162,7 +162,7 @@ services:
     host: "category-service-420c6a-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/simple-repo/category-service"
-      tag: "18-480c6e165c44"
+      tag: "26-480c6e165c44"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -225,7 +225,7 @@ services:
     host: "product-service-420c6a-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/simple-repo/product-service"
-      tag: "18-480c6e165c44"
+      tag: "26-480c6e165c44"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -288,7 +288,7 @@ services:
     host: "api-gateway-420c6a-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/simple-repo/api-gateway"
-      tag: "18-480c6e165c44"
+      tag: "26-480c6e165c44"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
