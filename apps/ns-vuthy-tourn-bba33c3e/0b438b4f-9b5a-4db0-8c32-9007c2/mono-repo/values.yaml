@@ -40,7 +40,7 @@ services:
     host: "config-server-9dd6b0-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/mono-repo/config-server"
-      tag: "34-e6f08a6f0191"
+      tag: "35-e6f08a6f0191"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -100,7 +100,7 @@ services:
     host: "eureka-server-9dd6b0-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/mono-repo/eureka-server"
-      tag: "34-e6f08a6f0191"
+      tag: "35-e6f08a6f0191"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -162,7 +162,7 @@ services:
     host: "category-service-9dd6b0-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/mono-repo/category-service"
-      tag: "34-e6f08a6f0191"
+      tag: "35-e6f08a6f0191"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -225,7 +225,7 @@ services:
     host: "product-service-9dd6b0-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/mono-repo/product-service"
-      tag: "34-e6f08a6f0191"
+      tag: "35-e6f08a6f0191"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -288,7 +288,7 @@ services:
     host: "api-gateway-9dd6b0-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/mono-repo/api-gateway"
-      tag: "34-e6f08a6f0191"
+      tag: "35-e6f08a6f0191"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -335,7 +335,7 @@ services:
       name: ""
       annotations: {}
     env: []
-    envJson: "[{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://mono-repo-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_SERVER_URL\",\"value\":\"http://localhost:8761/eureka\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE\",\"value\":\"5\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE\",\"value\":\"0\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT\",\"value\":\"30000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_VALIDATION_TIMEOUT\",\"value\":\"5000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_IDLE_TIMEOUT\",\"value\":\"30000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MAX_LIFETIME\",\"value\":\"45000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_KEEPALIVE_TIME\",\"value\":\"15000\",\"secret\":false},{\"name\":\"SERVER_PORT\",\"value\":\"8282\",\"secret\":false},{\"name\":\"UPSTREAM_BASE_URL\",\"value\":\"http://mono-repo-category-service.ns-vuthy-tourn-bba33c3e.svc:8484/\",\"secret\":false},{\"name\":\"PRODUCT_SERVICE_URL\",\"value\":\"http://mono-repo-product-service.ns-vuthy-tourn-bba33c3e.svc:8081/\",\"secret\":false},{\"name\":\"PRODUCT_SERVICE_BASE_URL\",\"value\":\"http://mono-repo-product-service.ns-vuthy-tourn-bba33c3e.svc:8081/\",\"secret\":false},{\"name\":\"CATEGORY_SERVICE_URL\",\"value\":\"http://mono-repo-category-service.ns-vuthy-tourn-bba33c3e.svc:8484/\",\"secret\":false},{\"name\":\"CATEGORY_SERVICE_BASE_URL\",\"value\":\"http://mono-repo-category-service.ns-vuthy-tourn-bba33c3e.svc:8484/\",\"secret\":false},{\"name\":\"SPRING_CONFIG_IMPORT\",\"value\":\"optional:configserver:http://mono-repo-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false}]"
+    envJson: "[{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://mono-repo-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_SERVER_URL\",\"value\":\"http://mono-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE\",\"value\":\"5\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE\",\"value\":\"0\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT\",\"value\":\"30000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_VALIDATION_TIMEOUT\",\"value\":\"5000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_IDLE_TIMEOUT\",\"value\":\"30000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MAX_LIFETIME\",\"value\":\"45000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_KEEPALIVE_TIME\",\"value\":\"15000\",\"secret\":false},{\"name\":\"SERVER_PORT\",\"value\":\"8282\",\"secret\":false},{\"name\":\"UPSTREAM_BASE_URL\",\"value\":\"http://mono-repo-category-service.ns-vuthy-tourn-bba33c3e.svc:8484/\",\"secret\":false},{\"name\":\"PRODUCT_SERVICE_URL\",\"value\":\"http://mono-repo-product-service.ns-vuthy-tourn-bba33c3e.svc:8081/\",\"secret\":false},{\"name\":\"PRODUCT_SERVICE_BASE_URL\",\"value\":\"http://mono-repo-product-service.ns-vuthy-tourn-bba33c3e.svc:8081/\",\"secret\":false},{\"name\":\"CATEGORY_SERVICE_URL\",\"value\":\"http://mono-repo-category-service.ns-vuthy-tourn-bba33c3e.svc:8484/\",\"secret\":false},{\"name\":\"CATEGORY_SERVICE_BASE_URL\",\"value\":\"http://mono-repo-category-service.ns-vuthy-tourn-bba33c3e.svc:8484/\",\"secret\":false},{\"name\":\"SPRING_CONFIG_IMPORT\",\"value\":\"optional:configserver:http://mono-repo-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_URL\",\"value\":\"http://mono-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"EUREKA_CLIENT_SERVICEURL_DEFAULTZONE\",\"value\":\"http://mono-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false}]"
     dependsOn:
       - "config-server"
       - "eureka-server"
