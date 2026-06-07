@@ -1,0 +1,341 @@
+workspace:
+  id: "ns-vuthy-tourn-bba33c3e"
+  userId: "0b438b4f-9b5a-4db0-8c32-9007c2"
+  namespace: "ns-vuthy-tourn-bba33c3e"
+  domain: "autonomous-istad.com"
+
+imagePullSecrets:
+  - name: "registry-secret"
+
+defaults:
+  replicaCount: 1
+  image:
+    pullPolicy: "IfNotPresent"
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "256Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 4
+    targetCPUUtilizationPercentage: 70
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+services:
+  - name: "config-server"
+    framework: "springboot-gradle"
+    serviceType: "internal"
+    exposePublic: false
+    primaryPublic: false
+    syncWave: 0
+    replicaCount: 1
+    containerPort: 8888
+    servicePort: 8888
+    host: "config-server-9dd6b0-bba33c3e.autonomous-istad.com"
+    image:
+      repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/mono-repo/config-server"
+      tag: "41-8c839b2e4b93"
+      pullPolicy: "IfNotPresent"
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "256Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+    probes:
+      mode: "http"
+      startup:
+        enabled: true
+        path: "/actuator/health"
+        initialDelaySeconds: 0
+        periodSeconds: 5
+        failureThreshold: 24
+      readiness:
+        enabled: true
+        path: "/actuator/health/readiness"
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        failureThreshold: 3
+      liveness:
+        enabled: true
+        path: "/actuator/health/liveness"
+        initialDelaySeconds: 30
+        periodSeconds: 15
+        failureThreshold: 3
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 4
+      targetCPUUtilizationPercentage: 70
+    ingress:
+      enabled: false
+      className: "nginx"
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      tls:
+        enabled: true
+        secretName: ""
+    serviceAccount:
+      create: true
+      name: ""
+      annotations: {}
+    env: []
+    envJson: "[{\"name\":\"SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE\",\"value\":\"5\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE\",\"value\":\"0\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT\",\"value\":\"30000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_VALIDATION_TIMEOUT\",\"value\":\"5000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_IDLE_TIMEOUT\",\"value\":\"30000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MAX_LIFETIME\",\"value\":\"45000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_KEEPALIVE_TIME\",\"value\":\"15000\",\"secret\":false},{\"name\":\"SERVER_PORT\",\"value\":\"8888\",\"secret\":false}]"
+  - name: "eureka-server"
+    framework: "springboot-gradle"
+    serviceType: "internal"
+    exposePublic: false
+    primaryPublic: false
+    syncWave: 1
+    replicaCount: 1
+    containerPort: 8761
+    servicePort: 8761
+    host: "eureka-server-9dd6b0-bba33c3e.autonomous-istad.com"
+    image:
+      repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/mono-repo/eureka-server"
+      tag: "41-8c839b2e4b93"
+      pullPolicy: "IfNotPresent"
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "256Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+    probes:
+      mode: "http"
+      startup:
+        enabled: true
+        path: "/actuator/health"
+        initialDelaySeconds: 0
+        periodSeconds: 5
+        failureThreshold: 24
+      readiness:
+        enabled: true
+        path: "/actuator/health/readiness"
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        failureThreshold: 3
+      liveness:
+        enabled: true
+        path: "/actuator/health/liveness"
+        initialDelaySeconds: 30
+        periodSeconds: 15
+        failureThreshold: 3
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 4
+      targetCPUUtilizationPercentage: 70
+    ingress:
+      enabled: false
+      className: "nginx"
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      tls:
+        enabled: true
+        secretName: ""
+    serviceAccount:
+      create: true
+      name: ""
+      annotations: {}
+    env: []
+    envJson: "[{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://mono-repo-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE\",\"value\":\"5\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE\",\"value\":\"0\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT\",\"value\":\"30000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_VALIDATION_TIMEOUT\",\"value\":\"5000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_IDLE_TIMEOUT\",\"value\":\"30000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MAX_LIFETIME\",\"value\":\"45000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_KEEPALIVE_TIME\",\"value\":\"15000\",\"secret\":false},{\"name\":\"SERVER_PORT\",\"value\":\"8761\",\"secret\":false},{\"name\":\"EUREKA_INSTANCE_HOSTNAME\",\"value\":\"localhost\",\"secret\":false},{\"name\":\"SPRING_CONFIG_IMPORT\",\"value\":\"optional:configserver:http://mono-repo-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false}]"
+    dependsOn:
+      - "config-server"
+  - name: "category-service"
+    framework: "springboot-gradle"
+    serviceType: "internal"
+    exposePublic: false
+    primaryPublic: false
+    syncWave: 2
+    replicaCount: 1
+    containerPort: 8484
+    servicePort: 8484
+    host: "category-service-9dd6b0-bba33c3e.autonomous-istad.com"
+    image:
+      repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/mono-repo/category-service"
+      tag: "41-8c839b2e4b93"
+      pullPolicy: "IfNotPresent"
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "256Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+    probes:
+      mode: "http"
+      startup:
+        enabled: true
+        path: "/actuator/health"
+        initialDelaySeconds: 0
+        periodSeconds: 5
+        failureThreshold: 24
+      readiness:
+        enabled: true
+        path: "/actuator/health/readiness"
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        failureThreshold: 3
+      liveness:
+        enabled: true
+        path: "/actuator/health/liveness"
+        initialDelaySeconds: 30
+        periodSeconds: 15
+        failureThreshold: 3
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 4
+      targetCPUUtilizationPercentage: 70
+    ingress:
+      enabled: false
+      className: "nginx"
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      tls:
+        enabled: true
+        secretName: ""
+    serviceAccount:
+      create: true
+      name: ""
+      annotations: {}
+    env: []
+    envJson: "[{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://mono-repo-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_SERVER_URL\",\"value\":\"http://mono-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE\",\"value\":\"5\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE\",\"value\":\"0\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT\",\"value\":\"30000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_VALIDATION_TIMEOUT\",\"value\":\"5000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_IDLE_TIMEOUT\",\"value\":\"30000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MAX_LIFETIME\",\"value\":\"45000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_KEEPALIVE_TIME\",\"value\":\"15000\",\"secret\":false},{\"name\":\"SERVER_PORT\",\"value\":\"8484\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_URL\",\"value\":\"jdbc:postgresql://db-mypostgres-pg-7a61e140.db.autonomous-istad.com:15434/mydb?sslmode=require\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_USERNAME\",\"value\":\"admin\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_DRIVER_CLASS_NAME\",\"value\":\"org.postgresql.Driver\",\"secret\":false},{\"name\":\"APP_CORS_ALLOWED_ORIGIN_PATTERNS\",\"value\":\"*\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_PASSWORD\",\"value\":\"\",\"secret\":true},{\"name\":\"SPRING_CONFIG_IMPORT\",\"value\":\"optional:configserver:http://mono-repo-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_URL\",\"value\":\"http://mono-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"EUREKA_CLIENT_SERVICEURL_DEFAULTZONE\",\"value\":\"http://mono-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false}]"
+    dependsOn:
+      - "config-server"
+      - "eureka-server"
+  - name: "product-service"
+    framework: "springboot-gradle"
+    serviceType: "internal"
+    exposePublic: false
+    primaryPublic: false
+    syncWave: 2
+    replicaCount: 1
+    containerPort: 8081
+    servicePort: 8081
+    host: "product-service-9dd6b0-bba33c3e.autonomous-istad.com"
+    image:
+      repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/mono-repo/product-service"
+      tag: "41-8c839b2e4b93"
+      pullPolicy: "IfNotPresent"
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "256Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+    probes:
+      mode: "http"
+      startup:
+        enabled: true
+        path: "/actuator/health"
+        initialDelaySeconds: 0
+        periodSeconds: 5
+        failureThreshold: 24
+      readiness:
+        enabled: true
+        path: "/actuator/health/readiness"
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        failureThreshold: 3
+      liveness:
+        enabled: true
+        path: "/actuator/health/liveness"
+        initialDelaySeconds: 30
+        periodSeconds: 15
+        failureThreshold: 3
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 4
+      targetCPUUtilizationPercentage: 70
+    ingress:
+      enabled: false
+      className: "nginx"
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      tls:
+        enabled: true
+        secretName: ""
+    serviceAccount:
+      create: true
+      name: ""
+      annotations: {}
+    env: []
+    envJson: "[{\"name\":\"SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE\",\"value\":\"5\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE\",\"value\":\"0\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT\",\"value\":\"30000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_VALIDATION_TIMEOUT\",\"value\":\"5000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_IDLE_TIMEOUT\",\"value\":\"30000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MAX_LIFETIME\",\"value\":\"45000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_KEEPALIVE_TIME\",\"value\":\"15000\",\"secret\":false},{\"name\":\"SERVER_PORT\",\"value\":\"8081\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_URL\",\"value\":\"jdbc:postgresql://db-mypostgres-pg-7a61e140.db.autonomous-istad.com:15434/mydb?sslmode=require\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_USERNAME\",\"value\":\"admin\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_DRIVER_CLASS_NAME\",\"value\":\"org.postgresql.Driver\",\"secret\":false},{\"name\":\"EUREKA_SERVER_URL\",\"value\":\"http://mono-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"APP_CORS_ALLOWED_ORIGIN_PATTERNS\",\"value\":\"*\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_PASSWORD\",\"value\":\"\",\"secret\":true},{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://mono-repo-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"SPRING_CONFIG_IMPORT\",\"value\":\"optional:configserver:http://mono-repo-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_URL\",\"value\":\"http://mono-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"EUREKA_CLIENT_SERVICEURL_DEFAULTZONE\",\"value\":\"http://mono-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false}]"
+    dependsOn:
+      - "config-server"
+      - "eureka-server"
+  - name: "api-gateway"
+    framework: "springboot-gradle"
+    serviceType: "gateway"
+    exposePublic: true
+    primaryPublic: true
+    syncWave: 3
+    replicaCount: 1
+    containerPort: 8282
+    servicePort: 8282
+    host: "api-gateway-9dd6b0-bba33c3e.autonomous-istad.com"
+    image:
+      repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/mono-repo/api-gateway"
+      tag: "41-8c839b2e4b93"
+      pullPolicy: "IfNotPresent"
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "256Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+    probes:
+      mode: "http"
+      startup:
+        enabled: true
+        path: "/actuator/health"
+        initialDelaySeconds: 0
+        periodSeconds: 5
+        failureThreshold: 24
+      readiness:
+        enabled: true
+        path: "/actuator/health/readiness"
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        failureThreshold: 3
+      liveness:
+        enabled: true
+        path: "/actuator/health/liveness"
+        initialDelaySeconds: 30
+        periodSeconds: 15
+        failureThreshold: 3
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 4
+      targetCPUUtilizationPercentage: 70
+    ingress:
+      enabled: true
+      className: "nginx"
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      tls:
+        enabled: true
+        secretName: ""
+    serviceAccount:
+      create: true
+      name: ""
+      annotations: {}
+    env: []
+    envJson: "[{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://mono-repo-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_SERVER_URL\",\"value\":\"http://mono-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE\",\"value\":\"5\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE\",\"value\":\"0\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT\",\"value\":\"30000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_VALIDATION_TIMEOUT\",\"value\":\"5000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_IDLE_TIMEOUT\",\"value\":\"30000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MAX_LIFETIME\",\"value\":\"45000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_KEEPALIVE_TIME\",\"value\":\"15000\",\"secret\":false},{\"name\":\"SERVER_PORT\",\"value\":\"8282\",\"secret\":false},{\"name\":\"UPSTREAM_BASE_URL\",\"value\":\"http://mono-repo-product-service.ns-vuthy-tourn-bba33c3e.svc:8081/\",\"secret\":false},{\"name\":\"CATEGORY_SERVICE_URL\",\"value\":\"http://mono-repo-category-service.ns-vuthy-tourn-bba33c3e.svc:8484/\",\"secret\":false},{\"name\":\"CATEGORY_SERVICE_BASE_URL\",\"value\":\"http://mono-repo-category-service.ns-vuthy-tourn-bba33c3e.svc:8484/\",\"secret\":false},{\"name\":\"PRODUCT_SERVICE_URL\",\"value\":\"http://mono-repo-product-service.ns-vuthy-tourn-bba33c3e.svc:8081/\",\"secret\":false},{\"name\":\"PRODUCT_SERVICE_BASE_URL\",\"value\":\"http://mono-repo-product-service.ns-vuthy-tourn-bba33c3e.svc:8081/\",\"secret\":false},{\"name\":\"SPRING_CONFIG_IMPORT\",\"value\":\"optional:configserver:http://mono-repo-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_URL\",\"value\":\"http://mono-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"EUREKA_CLIENT_SERVICEURL_DEFAULTZONE\",\"value\":\"http://mono-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false}]"
+    dependsOn:
+      - "config-server"
+      - "eureka-server"
