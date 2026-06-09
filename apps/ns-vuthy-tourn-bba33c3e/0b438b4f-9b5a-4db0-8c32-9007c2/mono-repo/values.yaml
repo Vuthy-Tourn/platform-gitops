@@ -40,7 +40,7 @@ services:
     host: "config-server-9dd6b0-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/mono-repo/config-server"
-      tag: "41-8c839b2e4b93"
+      tag: "8-e54233756237"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -100,7 +100,7 @@ services:
     host: "eureka-server-9dd6b0-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/mono-repo/eureka-server"
-      tag: "41-8c839b2e4b93"
+      tag: "8-e54233756237"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -162,7 +162,7 @@ services:
     host: "category-service-9dd6b0-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/mono-repo/category-service"
-      tag: "41-8c839b2e4b93"
+      tag: "8-e54233756237"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -209,7 +209,7 @@ services:
       name: ""
       annotations: {}
     env: []
-    envJson: "[{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://mono-repo-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_SERVER_URL\",\"value\":\"http://mono-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE\",\"value\":\"5\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE\",\"value\":\"0\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT\",\"value\":\"30000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_VALIDATION_TIMEOUT\",\"value\":\"5000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_IDLE_TIMEOUT\",\"value\":\"30000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MAX_LIFETIME\",\"value\":\"45000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_KEEPALIVE_TIME\",\"value\":\"15000\",\"secret\":false},{\"name\":\"SERVER_PORT\",\"value\":\"8484\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_URL\",\"value\":\"jdbc:postgresql://db-mypostgres-pg-7a61e140.db.autonomous-istad.com:15434/mydb?sslmode=require\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_USERNAME\",\"value\":\"admin\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_DRIVER_CLASS_NAME\",\"value\":\"org.postgresql.Driver\",\"secret\":false},{\"name\":\"APP_CORS_ALLOWED_ORIGIN_PATTERNS\",\"value\":\"*\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_PASSWORD\",\"value\":\"\",\"secret\":true},{\"name\":\"SPRING_CONFIG_IMPORT\",\"value\":\"optional:configserver:http://mono-repo-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_URL\",\"value\":\"http://mono-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"EUREKA_CLIENT_SERVICEURL_DEFAULTZONE\",\"value\":\"http://mono-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false}]"
+    envJson: "[{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://mono-repo-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_SERVER_URL\",\"value\":\"http://mono-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE\",\"value\":\"5\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE\",\"value\":\"0\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT\",\"value\":\"30000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_VALIDATION_TIMEOUT\",\"value\":\"5000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_IDLE_TIMEOUT\",\"value\":\"30000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_MAX_LIFETIME\",\"value\":\"45000\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_HIKARI_KEEPALIVE_TIME\",\"value\":\"15000\",\"secret\":false},{\"name\":\"SERVER_PORT\",\"value\":\"8484\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_URL\",\"value\":\"jdbc:postgresql://db-mypostgres-pg-7a61e140.db.autonomous-istad.com:15434/mydb?sslmode=require\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_USERNAME\",\"value\":\"admin\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_DRIVER_CLASS_NAME\",\"value\":\"org.postgresql.Driver\",\"secret\":false},{\"name\":\"APP_CORS_ALLOWED_ORIGIN_PATTERNS\",\"value\":\"*\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_PASSWORD\",\"value\":\"secret123\",\"secret\":false},{\"name\":\"SPRING_CONFIG_IMPORT\",\"value\":\"optional:configserver:http://mono-repo-config-server.ns-vuthy-tourn-bba33c3e.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_URL\",\"value\":\"http://mono-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false},{\"name\":\"EUREKA_CLIENT_SERVICEURL_DEFAULTZONE\",\"value\":\"http://mono-repo-eureka-server.ns-vuthy-tourn-bba33c3e.svc:8761/eureka/\",\"secret\":false}]"
     dependsOn:
       - "config-server"
       - "eureka-server"
@@ -225,7 +225,7 @@ services:
     host: "product-service-9dd6b0-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/mono-repo/product-service"
-      tag: "42-1bf803f84577"
+      tag: "8-e54233756237"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -288,7 +288,7 @@ services:
     host: "api-gateway.vuthytourn.shop"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/mono-repo/api-gateway"
-      tag: "41-8c839b2e4b93"
+      tag: "8-e54233756237"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
