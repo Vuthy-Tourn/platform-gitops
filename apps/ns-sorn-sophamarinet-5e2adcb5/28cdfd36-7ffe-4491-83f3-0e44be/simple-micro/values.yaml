@@ -225,7 +225,7 @@ services:
     host: "product-service-808e64-5e2adcb5.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/28cdfd36-7ffe-4491-83f3-0e44be/simple-micro/product-service"
-      tag: "20-e54233756237"
+      tag: "21-073831722ffa"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
