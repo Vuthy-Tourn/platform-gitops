@@ -40,7 +40,7 @@ services:
     host: "config-server-9dd6b0-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/mono-repo/config-server"
-      tag: "8-e54233756237"
+      tag: "14-e54233756237"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -100,7 +100,7 @@ services:
     host: "eureka-server-9dd6b0-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/mono-repo/eureka-server"
-      tag: "8-e54233756237"
+      tag: "14-e54233756237"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -162,7 +162,7 @@ services:
     host: "category-service-9dd6b0-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/mono-repo/category-service"
-      tag: "8-e54233756237"
+      tag: "14-e54233756237"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -225,7 +225,7 @@ services:
     host: "product-service-9dd6b0-bba33c3e.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/mono-repo/product-service"
-      tag: "8-e54233756237"
+      tag: "14-e54233756237"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -288,7 +288,7 @@ services:
     host: "api-gateway.vuthytourn.shop"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/0b438b4f-9b5a-4db0-8c32-9007c2/mono-repo/api-gateway"
-      tag: "8-e54233756237"
+      tag: "14-e54233756237"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
