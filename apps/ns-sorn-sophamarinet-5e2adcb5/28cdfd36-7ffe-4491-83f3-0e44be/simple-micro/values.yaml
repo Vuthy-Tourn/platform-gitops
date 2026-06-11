@@ -285,7 +285,7 @@ services:
     replicaCount: 1
     containerPort: 8282
     servicePort: 8282
-    host: "api-gateway-808e64-5e2adcb5.autonomous-istad.com"
+    host: "marinet.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/28cdfd36-7ffe-4491-83f3-0e44be/simple-micro/api-gateway"
       tag: "20-e54233756237"
