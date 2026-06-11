@@ -40,7 +40,7 @@ services:
     host: "config-server-ccb711-f00120b6.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/37bf525a-8ed2-4c6a-8f0a-05a248/mama/config-server"
-      tag: "66-adc675df3c10"
+      tag: "67-adc675df3c10"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -100,7 +100,7 @@ services:
     host: "eureka-server-ccb711-f00120b6.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/37bf525a-8ed2-4c6a-8f0a-05a248/mama/eureka-server"
-      tag: "66-adc675df3c10"
+      tag: "67-adc675df3c10"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -162,7 +162,7 @@ services:
     host: "category-service-ccb711-f00120b6.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/37bf525a-8ed2-4c6a-8f0a-05a248/mama/category-service"
-      tag: "66-adc675df3c10"
+      tag: "67-adc675df3c10"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -209,7 +209,7 @@ services:
       name: ""
       annotations: {}
     env: []
-    envJson: "[{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://mama-config-server.ns-chengdevith-f00120b6.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_SERVER_URL\",\"value\":\"http://mama-eureka-server.ns-chengdevith-f00120b6.svc:8761/eureka/\",\"secret\":false},{\"name\":\"SERVER_PORT\",\"value\":\"8484\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_URL\",\"value\":\"jdbc:postgresql://db-mama-pg-4bd6951f.db.autonomous-istad.com:15432/mama?sslmode=require\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_USERNAME\",\"value\":\"mama\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_DRIVER_CLASS_NAME\",\"value\":\"org.postgresql.Driver\",\"secret\":false},{\"name\":\"APP_CORS_ALLOWED_ORIGIN_PATTERNS\",\"value\":\"*\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_PASSWORD\",\"value\":\"\",\"secret\":true},{\"name\":\"SPRING_CONFIG_IMPORT\",\"value\":\"optional:configserver:http://mama-config-server.ns-chengdevith-f00120b6.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_URL\",\"value\":\"http://mama-eureka-server.ns-chengdevith-f00120b6.svc:8761/eureka/\",\"secret\":false},{\"name\":\"EUREKA_CLIENT_SERVICEURL_DEFAULTZONE\",\"value\":\"http://mama-eureka-server.ns-chengdevith-f00120b6.svc:8761/eureka/\",\"secret\":false}]"
+    envJson: "[{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://mama-config-server.ns-chengdevith-f00120b6.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_SERVER_URL\",\"value\":\"http://mama-eureka-server.ns-chengdevith-f00120b6.svc:8761/eureka/\",\"secret\":false},{\"name\":\"SERVER_PORT\",\"value\":\"8484\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_URL\",\"value\":\"jdbc:postgresql://db-mama-pg-91ac5f8a.db.autonomous-istad.com:15432/mama?sslmode=require\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_USERNAME\",\"value\":\"mama\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_DRIVER_CLASS_NAME\",\"value\":\"org.postgresql.Driver\",\"secret\":false},{\"name\":\"APP_CORS_ALLOWED_ORIGIN_PATTERNS\",\"value\":\"*\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_PASSWORD\",\"value\":\"\",\"secret\":true},{\"name\":\"SPRING_CONFIG_IMPORT\",\"value\":\"optional:configserver:http://mama-config-server.ns-chengdevith-f00120b6.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_URL\",\"value\":\"http://mama-eureka-server.ns-chengdevith-f00120b6.svc:8761/eureka/\",\"secret\":false},{\"name\":\"EUREKA_CLIENT_SERVICEURL_DEFAULTZONE\",\"value\":\"http://mama-eureka-server.ns-chengdevith-f00120b6.svc:8761/eureka/\",\"secret\":false}]"
     dependsOn:
       - "config-server"
       - "eureka-server"
@@ -225,7 +225,7 @@ services:
     host: "product-service-ccb711-f00120b6.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/37bf525a-8ed2-4c6a-8f0a-05a248/mama/product-service"
-      tag: "66-adc675df3c10"
+      tag: "67-adc675df3c10"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -272,7 +272,7 @@ services:
       name: ""
       annotations: {}
     env: []
-    envJson: "[{\"name\":\"SERVER_PORT\",\"value\":\"8081\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_URL\",\"value\":\"jdbc:postgresql://db-mama-pg-4bd6951f.db.autonomous-istad.com:15432/mama?sslmode=require\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_USERNAME\",\"value\":\"mama\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_DRIVER_CLASS_NAME\",\"value\":\"org.postgresql.Driver\",\"secret\":false},{\"name\":\"EUREKA_SERVER_URL\",\"value\":\"http://mama-eureka-server.ns-chengdevith-f00120b6.svc:8761/eureka/\",\"secret\":false},{\"name\":\"APP_CORS_ALLOWED_ORIGIN_PATTERNS\",\"value\":\"*\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_PASSWORD\",\"value\":\"\",\"secret\":true},{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://mama-config-server.ns-chengdevith-f00120b6.svc:8888/\",\"secret\":false},{\"name\":\"SPRING_CONFIG_IMPORT\",\"value\":\"optional:configserver:http://mama-config-server.ns-chengdevith-f00120b6.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_URL\",\"value\":\"http://mama-eureka-server.ns-chengdevith-f00120b6.svc:8761/eureka/\",\"secret\":false},{\"name\":\"EUREKA_CLIENT_SERVICEURL_DEFAULTZONE\",\"value\":\"http://mama-eureka-server.ns-chengdevith-f00120b6.svc:8761/eureka/\",\"secret\":false}]"
+    envJson: "[{\"name\":\"SERVER_PORT\",\"value\":\"8081\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_URL\",\"value\":\"jdbc:postgresql://db-mama-pg-91ac5f8a.db.autonomous-istad.com:15432/mama?sslmode=require\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_USERNAME\",\"value\":\"mama\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_DRIVER_CLASS_NAME\",\"value\":\"org.postgresql.Driver\",\"secret\":false},{\"name\":\"EUREKA_SERVER_URL\",\"value\":\"http://mama-eureka-server.ns-chengdevith-f00120b6.svc:8761/eureka/\",\"secret\":false},{\"name\":\"APP_CORS_ALLOWED_ORIGIN_PATTERNS\",\"value\":\"*\",\"secret\":false},{\"name\":\"SPRING_DATASOURCE_PASSWORD\",\"value\":\"\",\"secret\":true},{\"name\":\"CONFIG_SERVER_URL\",\"value\":\"http://mama-config-server.ns-chengdevith-f00120b6.svc:8888/\",\"secret\":false},{\"name\":\"SPRING_CONFIG_IMPORT\",\"value\":\"optional:configserver:http://mama-config-server.ns-chengdevith-f00120b6.svc:8888/\",\"secret\":false},{\"name\":\"EUREKA_URL\",\"value\":\"http://mama-eureka-server.ns-chengdevith-f00120b6.svc:8761/eureka/\",\"secret\":false},{\"name\":\"EUREKA_CLIENT_SERVICEURL_DEFAULTZONE\",\"value\":\"http://mama-eureka-server.ns-chengdevith-f00120b6.svc:8761/eureka/\",\"secret\":false}]"
     dependsOn:
       - "config-server"
       - "eureka-server"
@@ -288,7 +288,7 @@ services:
     host: "api-gateway-ccb711-f00120b6.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/37bf525a-8ed2-4c6a-8f0a-05a248/mama/api-gateway"
-      tag: "66-adc675df3c10"
+      tag: "67-adc675df3c10"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
