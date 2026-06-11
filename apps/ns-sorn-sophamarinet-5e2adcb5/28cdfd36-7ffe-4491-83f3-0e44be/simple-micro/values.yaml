@@ -225,7 +225,7 @@ services:
     host: "product-service-808e64-5e2adcb5.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/28cdfd36-7ffe-4491-83f3-0e44be/simple-micro/product-service"
-      tag: "21-073831722ffa"
+      tag: "34-f60e371812e7"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -285,7 +285,7 @@ services:
     replicaCount: 1
     containerPort: 8282
     servicePort: 8282
-    host: "marinet.autonomous-istad.com"
+    host: "api-gateway-808e64-5e2adcb5.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/28cdfd36-7ffe-4491-83f3-0e44be/simple-micro/api-gateway"
       tag: "20-e54233756237"
