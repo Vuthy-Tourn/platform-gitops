@@ -40,7 +40,7 @@ services:
     host: "config-server-808e64-5e2adcb5.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/28cdfd36-7ffe-4491-83f3-0e44be/simple-micro/config-server"
-      tag: "20-e54233756237"
+      tag: "40-f60e371812e7"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -100,7 +100,7 @@ services:
     host: "eureka-server-808e64-5e2adcb5.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/28cdfd36-7ffe-4491-83f3-0e44be/simple-micro/eureka-server"
-      tag: "20-e54233756237"
+      tag: "40-f60e371812e7"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -162,7 +162,7 @@ services:
     host: "category-service-808e64-5e2adcb5.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/28cdfd36-7ffe-4491-83f3-0e44be/simple-micro/category-service"
-      tag: "20-e54233756237"
+      tag: "40-f60e371812e7"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -225,7 +225,7 @@ services:
     host: "product-service-808e64-5e2adcb5.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/28cdfd36-7ffe-4491-83f3-0e44be/simple-micro/product-service"
-      tag: "21-073831722ffa"
+      tag: "40-f60e371812e7"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -285,10 +285,10 @@ services:
     replicaCount: 1
     containerPort: 8282
     servicePort: 8282
-    host: "gateway.marinet.shop"
+    host: "marinet.shop"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/28cdfd36-7ffe-4491-83f3-0e44be/simple-micro/api-gateway"
-      tag: "20-e54233756237"
+      tag: "40-f60e371812e7"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
