@@ -1,9 +1,0 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-namespace: ns-chengdevith-f00120b6
-helmGlobals:
-  chartHome: ../../../../templates/charts
-helmCharts:
-  - name: app-template
-    releaseName: micro
-    valuesFile: values.yaml
