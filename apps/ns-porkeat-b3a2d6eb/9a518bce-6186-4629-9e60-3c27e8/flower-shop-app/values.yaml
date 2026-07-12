@@ -40,7 +40,7 @@ services:
     host: "config-server-16b1d8-b3a2d6eb.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/9a518bce-6186-4629-9e60-3c27e8/flower-shop-app/config-server"
-      tag: "50-dd8c8eb24816"
+      tag: "51-ef4cd67ed647"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -100,7 +100,7 @@ services:
     host: "eureka-server-16b1d8-b3a2d6eb.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/9a518bce-6186-4629-9e60-3c27e8/flower-shop-app/eureka-server"
-      tag: "50-dd8c8eb24816"
+      tag: "51-ef4cd67ed647"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -162,7 +162,7 @@ services:
     host: "category-service-16b1d8-b3a2d6eb.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/9a518bce-6186-4629-9e60-3c27e8/flower-shop-app/category-service"
-      tag: "50-dd8c8eb24816"
+      tag: "51-ef4cd67ed647"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -225,7 +225,7 @@ services:
     host: "product-service-16b1d8-b3a2d6eb.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/9a518bce-6186-4629-9e60-3c27e8/flower-shop-app/product-service"
-      tag: "50-dd8c8eb24816"
+      tag: "51-ef4cd67ed647"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
@@ -288,7 +288,7 @@ services:
     host: "api-gateway-16b1d8-b3a2d6eb.autonomous-istad.com"
     image:
       repository: "goharbor-itp.anajak-khmer.site/microservices-deployment/9a518bce-6186-4629-9e60-3c27e8/flower-shop-app/api-gateway"
-      tag: "50-dd8c8eb24816"
+      tag: "51-ef4cd67ed647"
       pullPolicy: "IfNotPresent"
     resources:
       requests:
