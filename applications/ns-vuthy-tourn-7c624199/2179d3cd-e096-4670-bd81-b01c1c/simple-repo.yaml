@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: "simple-repo-2179d3cd-e096-4670-bd81-b01c1c"
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+  labels:
+    app.kubernetes.io/managed-by: argocd
+    platform.devops/project-name: "simple-repo"
+spec:
+  project: "default"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: "ns-vuthy-tourn-7c624199"
+  source:
+    repoURL: "https://github.com/Vuthy-Tourn/platform-gitops"
+    targetRevision: "main"
+    path: "apps/ns-vuthy-tourn-7c624199/2179d3cd-e096-4670-bd81-b01c1c/simple-repo"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+  info:
+    - name: templateRepo
+      value: "https://github.com/Vuthy-Tourn/platform-infra-testing"
+    - name: templateRevision
+      value: "main"
+    - name: templatePath
+      value: "helm/app-template"
